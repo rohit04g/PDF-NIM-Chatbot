@@ -1,0 +1,129 @@
+Create a quick landscape block-out and press the simulate button.
+
+Do you have an interest in procedural terrain generation? Or do you enjoy physics simulations? Then this topic might be just for you.
+
+I am Ivo van der Veen a year two student at the Breda University of Applied Sciences and I am following the Creative Media and Game Technologies course. Quite a mouthful when you say it in a row. Anyway for one of our semester we had the opportunity to do an independent project based on research. I chose the topic of hydraulic erosion which had always been interesting to me. In my project I spent time on making a system so the user can draw on terrain and then use the erosion system to add details to their block-out. The drawing on the terrain section of the code will not be discussed in this blog because it’s all been done a lot of times and all in all it is less interesting to talk about.
+
+With this blog you will be able to create the same system I have created and I’ll give you some pointers and some pitfalls that I walked into to help you make a better version and to be able to make it quicker than I did.
+
+But before we get into all of that.
+
+Hydraulic erosion is the erosion on mountains which is caused by water. In the case of my simulation, Rainfall. There are many more types of erosion such as wind erosion, thermal erosion, glacial erosion, coastal erosion, chemical erosion, and many more. For today let’s focus on hydraulic erosion and keep in mind some erosions caused by gravity such as sediment slippage. Sediment is another word for matter inside of a fluid. It will play one of the main roles in our simulation.
+
+After spending some time researching this topic I found that there were two general paths to hydraulic erosion simulation. One method that I will call the Cell based simulation and one that I will refer to as the particle based simulation.
+
+In this approach the terrain data and water data is stored inside of cells in a grid. This means the water exists on the grid points only and it can interact with its neighbouring cells. This grid can be two dimensional in case of water that is always on top of the terrain, or three dimensional for simulations where a lot of water is on top of each other.
+
+During the simulation each cell is calculating a new state using the data of what the water is doing inside it’s own cell and how much water came in from neighbouring cells. Because each cell has to check for this every tick the simulation does not scale well with bigger map sizes. Besides this the technique is not very intuitive to wrap your head around. Especially when trying to make sure the conservation of mass is correct.
+
+Another method of erosion simulation is the particle based method. In this technique you spawn in an amount of particles. (typically around 10.000 depending on the map size) These particles have a floating point position on the terrain. In our case the terrain itself is stored in a 2d grid with a heightmap. The particle moves across this terrain calculating the slope it is currently on and following the path of least resistance down hill.
+
+While the particle is traveling down hill it erodes and deposits sediment along the way eventually evaporating or running off the edge of the map. This method of simulating means only the affected parts of the map are computed which means the performance is no longer tied to the size of the map, but rather the amount of particles.
+
+The approach I decided to go with was the particle based simulation. This is because it would be easily scalable, pretty efficient and because the method seemed intuitive to me.
+
+Besides these reasons I later found more benefits such as being able to see where the particles had moved resulting in a view of where creaks, rivers and lakes could be placed.
+
+I have coded my implementation in C++ running on the CPU. Later on I will give some performance numbers so you can decided whether you’d like to choose for the CPU as well or write it for the GPU. This erosion system was heavily based on a paper by Hans Theobald Beyer.
+
+The system works as follows:
+
+The code goes through a loop of all the existing particles. Then at the start of the loop we get the particles current position. In the case of simulating rain we can get away with starting of all the particles with a random position on the map before we start the loop.
+
+Since this current location is a floating point value and our map is a grid based heightmap. We have to use bi-linear interpolation to get the gradient value of our particle. To do this we calculate the weights based on the distance from the particle to the corners.
+
+Then we use these weights and the heights of the four corners to interpolate the gradient for our point. In code this looks something like this:
+
+After getting this gradient we use it to calculate a new direction for our particle to go.
+
+This uses a constant variable called inertia which can be tweaked when simulating to yield slightly differing results. It’s responsible for deciding how fast a particle can change direction. In some cases when the gradient is getting very close to 0 the new direction vector can become 0 as well. When this happens the particle is on flat ground and we will simply give it a new direction in a random direction to account for the smaller details in elevation we are missing in our simulation. Make sure the new direction vector is normalised before moving on to the next step.
+
+When we have the new direction we calculate the new position of the particle. Here we do something that might seem unintuitive. We move the particle one grid length in the new direction. This means we do not use the velocity in moving the particle. The reason for this is because if the particle were to be moving fast we could skip a cell in the height map which would result in a sort of ghosting effect. That grid where the water definitely has been will not be effected by the simulation. So, to prevent this we always move the particle one grid length. In case of a 1 unit grid this means you can simply add the normalized direction vector to the old position.
+
+With the new position vector calculated it is a good moment to check if the particle did not just stray out of the map. If the particle did go out of bounds we remove it from the particle list and mourn the sediment that has just left the map as well. This might sound like it could cause issues and we will get back to it later.
+
+After moving the particle we will now get the height of our old location and our newly calculated position. To get the heights we once more use bi-linear interpolation. When we have the heights we calculate the difference in height which will tell us what our drop has been doing in that one unit movement.
+
+The options are quite limited luckily. When the difference in height is negative this means our drop has been going down hill, which means it was probably busy eroding. If the drop went uphill however, then it has just left outside of a little dip. Water does not like moving upwards so it will leave behind as much sediment as it can in hopes of filling the dip and making it smooth.
+
+So let’s break that down. Firstly what if the height difference is positive and the drop went uphill. As said the drop absolutely despises holes in the terrain so it will drop all its sediment in its previous location hoping to fill the dip. That being said, the drop will not be responsible for creating a new hill to climb so the amount of sediment it drops will always be lower or equal to the difference in height it just traversed.
+
+But what if the drop went sliding downhill and the height difference is negative? That calls for a slightly more complicated approach. If the drop is on the move downhill we want to calculate what the drops current capacity is. This is done with the following formula.
+
+In this formula we take the particles current velocity and amount of water. Which at the start of the simulation should be set and will decrease over time as it evaporates. The dropCapacity variable is another constant that can be tweaked when simulating. It is responsible for deciding how much sediment a drop can carry.
+
+When this is calculated there are two scenarios once again. Either the drop is carrying more sediment than it currently has room for. Or the drop now has more capacity to carry more sediment.
+
+In the first case we have to drop some of our carried sediment on the old position. We do this by taking the amount of sediment we have too much of and multiplying it by a constant deposition Rate. This variable makes sure not all sediment is dropped at once on one position. Doing this would cause spikes to be created in the terrain which would be very unnatural. Therefore, we only drop a percentage of sediment every time.
+
+In the other case where we have more capacity than we have sediment with us we can finally get to the part that the system is named after, erosion. The drop will erode the terrain at the previous position. However, this will also not be done all at once since that could create massive holes in the terrain. Instead we once again use a constant variable to spread the process over multiple spots
+
+Once again the drop cannot erode more than the difference in height it has just travelled.
+
+After this we finish of the cycle by calculating the new velocity of the particle. This is done with the following formula:
+
+In this formula gravity is a constant, traditionally set to 9.81f. Note here that I use the max function to make sure we don’t try getting the square root of a negative number.
+
+Lastly, we evaporate a part of the water using a final constant: evaporation Rate.
+
+Then don’t forget to apply all the newly calculated particle variables and increase the particles lifetime variable by one.
+
+You may have noticed I skipped over the actual depositing and erosion code. Don’t worry I will tackle it now in a bit more detail.
+
+For depositing sediment we simply receive the amount of sediment we want to deposit and the position we want it to be deposited and use the bi-linear interpolation once more to get the weights for the surrounding grid points. Then we use those weights to spread the sediment correctly back on to the heightmap.
+
+When eroding the terrain you can choose to make it a bit more tricky but also accurate. In the intro I mentioned we will be considering sediment slippage and other gravitational erosion. This is because when eroding a bit of the terrain it is often the case that the surrounding terrain also erodes a bit to fill the created dip and create a bigger more smoothed dip in the terrain. To do this in code we add a constant erosionRadius variable. Using this variable we go through a square of positions around the drop position assigning weights to each one based on the distance of that position to the drop position.
+
+This turns the square into a circle of weights. We save each weight for each position in an array and also keep track of a total weights variable by adding up each weight. When this is all done we go through that same square again and start eroding the terrain.
+
+The amount a bit of the terrain gets eroded depends on its assigned weight divided by the total weight. Effectively normalising all the weights to make sure we adhere to the conservation of mass.
+
+There are some weird things that still need to be discussed before we can truly pronounce our system done. The most obvious of which are the edge cases. First of all you should always make sure your current particle is on the map and that you aren’t sampling data outside of bounds.
+
+When you have that covered there are still things to watch out for however. One big problem are what Beyer calls drain valleys. This is the effect where particles can flow off the side of the map and take sediment with them. This is fine until one of the drops creates a slight dip at the edge. This will result in more and more drops going down this edge and eroding the surface with them. Creating a bigger and bigger ravine. To stop this Beyer proposes a set minimum value for the terrain. Meaning that the terrain cannot be eroded past a certain point which stops the ravines from getting out of hand and reaching infinity.
+
+At first I thought this solution was not the best and it felt a bit like cheating. However, after implementing it myself it has basically no visible effects on the terrain. If you would like a different approach there are a few options. You could generate a bigger map and chop of the edges when you’re done. You could set the values outside of the map to be a really high value which would stop the drops from eroding. However, that could cause drops to get an incorrect direction vector and start wondering in weird ways at the edges.
+
+Another thing that can happen is weird bumps forming in your terrain. This can quite easily be caused by the values you enter. For each map size there are values that will work better and worse, and finding the right one can sometimes be tricky. One thing you can do to make this process easier is to save the changes you made to the heightmap separately and do a smoothing pass over it before applying it to the final heightmap.
+
+After getting all of this in code and running, and having a little visualizer built that renders the terrain and applies some basic texturing, it looks like this!
+
+The values I am using in this simulation are as follows. The terrain is 100 x 100 vertices, particle count = 5000, inertia = 0.3, drop capacity = 10, deposition rate = 0.08, erosion rate = 0.7, gravity = 9.81, evaporation rate = 0.02, max life time = 300 and the erosion radius = 5.
+
+To show you the performance of the code and also how it runs at different scales I have done a few stress tests with standard values and changing one of them to show you what effects it has. Each time measurement was done 5 times and then averaged to get a more reliable result. The standard values are:
+
+value — time — time increase compared to previous time1000– 17.37 ms5000– 78.62 ms — x 4.5310,000– 156.45 ms — x 1.9950,000– 791.43 ms — x 5.05100,000– 1774.60 ms — x 2,24
+
+As you can see in this table the particle count variable linearly increases the time it takes to compute the erosion simulation. When the particles increase times 5 it also takes about 5 times longer to compute.
+
+to test the erosion radius variable I used almost all the previously mentioned base settings. The particle count was put up to 10000 to make the effect more visible. When testing I increased the erosion radius variable as is stated in the table. value — time5–176.6210–240.0215–336.7620–470.00
+
+As expected the erosion radius increases the time quadratically ( O(n²) ) because it checks a region of erosion radius x erosion radius. However, this effect is quite small because it only affects the erosion function which doesn’t get called all the time. Furthermore, when taking multiple measurements I noticed that the times vary quite a lot depending on how much erosion happens in the system and where. (Since on the sides the radius will be cut short.)
+
+value — time100–36.04 ms500–139.37 ms1000–228.54 ms1500–325.33 ms2000–417.68 ms6000–448.52 ms
+
+As can be seen in the values and in the graph, the particle life time variable has a big effect when stepping on the lower side of the graph. However the higher the variable gets the less particles are still around to update. This means that the graph eventually flattens out at 0 particles left. In which case the increase in particle life time will mean near 0 increase in compute time. Since the only thing it will do is go through a loop until the life time is met and then run in to the following for loop each time.
+
+value — time100 x 100 -79.61 ms200 x 200–93.98 ms400 x 400–91.79 ms1000 x 1000–130.20 ms
+
+Changing the map size has no real effect on the erosion simulation times, as was expected. It does seem to have a small effect however, which is caused by the get data operation taking longer. Such as getting the height map data from the landscape. It takes a bit longer on a bigger map then on a small map. Besides this we should take into account that a new random map was generated for each test which can result in slightly more and less intensive erosion happening based on the terrain gradients.
+
+For starters the Erosion Simulation currently runs on the CPU in series with a general complexity of O(n). (n being the amount of particles) To improve performance the simulation could be multithreaded, spreading the work of n particles and halving or even quartering the work load this way. This is viable because the particles do not interact with each other. They do however interact with the same terrain potentially at the same spot at the same time. Therefore, I recommend atomics being used when editing the heightmap to make sure no changes get lost or over written.
+
+Besides this it’s completely possible to move the entire erosion simulation to the GPU instead of the CPU. This was also a recommended improvement in two of the papers I have read. I don’t have any results to proof that this would increase speed. However, the task is certainly long enough to make up for the time it takes to set up and while it is running on the GPU the CPU could continue with other logic in the mean time. This would certainly be a huge time bonus especially for simulations with higher values.
+
+Lastly, I would like to mention that it is sadly not possible to split the world into chunks and load them one at a time or any other optimisation you could do with chunks. This is because the erosion simulation requires that water can flow from any point on the map to any other point on the map. If the map was cut into pieces the edges would not line up anymore and the overall accuracy of the map would decrease as well.
+
+Expanding on the erosion system has a very bright future with many fun differing features that could still be added. You could have a seperate map that contains the erosion rates of specific materials. This way you could place stronger boulders in your terrain and watch the water flow around them while eroding.
+
+You could use the flow map to actual render and draw rivers, creeks, and lakes in your terrain.
+
+You could add trees into the mix and use them to make the soil sturdier. For reference of both of these suggestion I recommend this amazing blog.
+
+You could add wind erosion or other types of erosion to the mix.
+
+The raining could be simulated with an actual weather system instead of random even spreading on the map.
+
+Overall the options are nearly endless, and I am excited to see where it will be taken next. I am hopeful to keep working on this project in the future and apply some of these features myself. If you end up implementing this or have any questions you can contact me on: ivo.thom.vanderveen@gmail.com
+
+or check out my portfolio website.

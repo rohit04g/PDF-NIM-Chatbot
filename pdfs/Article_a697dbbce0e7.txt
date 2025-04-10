@@ -1,0 +1,63 @@
+So, you have built an amazing python package, congratulations! Wouldn’t it be great to get it out into the world and make it easier for other data professionals to put your baby to test. But… arghhh documentations, we all know the pain.
+
+Sphinx might just be the perfect tool for you! It can build an aesthetically pleasing website, making it easier to search and navigate different modules/ functions. It will even update automatically with each release! As a bonus, I will show you how to host it via a GitHub page (it’s freeeeee). This article will give you a step-by-step guide on how to achieve your documentation dreams.
+
+STEP 1: Install and initialise Sphinx
+
+I use poetry for package management, you can just replace all my poetry command with pip equivalent if you are a pip lover.
+
+This will prompt you with several configuration options, type y for the following configuration:
+
+You should now have a docs/ folder with the following structure, if not, you can move these folders into the right place manually:
+
+STEP 2: Modify docs/source/conf.py to include Sphinx extensions
+
+Depending on what you are trying to do, you might want to add/ replace some extensions I have here. Check out this page to see all available Sphinx extensions.
+
+Add the following in the “General configuration” section of conf.py file:
+
+If you want to make your Sphinx documentation visually appealing, I recommend using Furo theme. First install furo by running:
+
+After installing furo, add the following in the “Options for HTML output” section of conf.py file:
+
+STEP 3: Automatically Generate API Documentation
+
+You should now have generated .rst files for each module in your package inside docs/source/.
+
+STEP 4: Build the Documentation
+
+Now, your html is built, open _build/html/index.html in a browser to see the generated docs. You can keep going back to your conf.py file to change theme or add brand colours then just repeat step 3 and 4 until you are happy with your website.
+
+You can serve the documentation locally, by running the following:
+
+Now, open your browser and go to http://localhost:8000.
+
+STEP 5: Customise your landing page
+
+You might want to navigate to your index.rst file at this point to add a landing page description about your package. It can look something like
+
+Your index.rst should also contain the following, you might need to play around with different maxdepth setting to ensure all submodules are captured:
+
+STEP 6: Prepare your GitHub repo for deployment
+
+Create a new branch and make sure it is blank.
+
+Go to gh-pages branch on your remote GitHub repo, you should now see a branch with nothing in it. You can then go to Settings → Pages → Deploy from a branch → gh-pages → /(root) as shown below. If you are feeling fancy, you can add your own custom domain.
+
+For hosting on GitHub Pages, you can configure GitHub Actions to deploy the docs/_build/html/ folder or copy the docs/_build/html/ folder to a new branch and deploy the branch. You probably guessed it; I am going with the latter option for deployment.
+
+STEP 7: Automate Documentation Generation in CI/CD
+
+You can integrate Sphinx with GitHub Actions or another CI/CD pipeline to generate docs automatically on push.
+
+Navigate to your root folder, create file build-sphinx-doc.yml in a new folder .github/workflows.
+
+STEP 8: Enjoy
+
+On push to main, your CI/CD pipeline will run automatically to update your documentation while you sit back and admire your genius.
+
+My final thoughts
+
+This was a fun little exercise I did for a work project. During my research, I found a package called PyScaffold which can be used to set up tools like with Sphinx, Poetry and pre-commit hook at the start of a project. I would love to try this in the future to see how the process differs with setting up Sphinx post development.
+
+Reference

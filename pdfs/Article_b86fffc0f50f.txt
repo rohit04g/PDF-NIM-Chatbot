@@ -1,0 +1,21 @@
+With the increasing use of mobile devices and tablets, device orientation plays a significant role in enhancing user experience. Many applications adjust their UI or functionality based on whether the device is in portrait or landscape mode.
+
+In this article, we will explore different ways to detect and use device orientation in a Next.js application.
+
+We will explore three approaches:
+
+Previously, window.orientation was a simple way to get the device's orientation. However, it has been deprecated in many browsers.
+
+Issue: window.orientation is deprecated in most modern browsers.
+
+A more modern approach is using screen.orientation. It provides more details and is widely supported in modern browsers.
+
+Best choice: Works well and provides accurate results.
+
+If your primary goal is to adjust styles based on orientation, window.matchMedia or CSS media queries are the best choices.
+
+This method is useful if you only need responsive styling rather than JavaScript logic.
+
+Handling orientation in Next.js is crucial for mobile-friendly applications. Depending on your use case:
+
+By implementing these methods, you can create responsive and user-friendly experiences in your Next.js applications. 🚀

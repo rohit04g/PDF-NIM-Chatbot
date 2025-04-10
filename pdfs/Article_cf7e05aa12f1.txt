@@ -1,0 +1,57 @@
+Flutter’s rendering pipeline is a highly optimized process that transforms your declarative UI code into pixels on the screen. With a deep understanding of the rendering pipeline you can make smarter choices about widget structure and state management, leading to more maintainable and scalable code.
+
+If you open the DevTools like that, in the middle you will see a result of the build phase, on the right you will see a result of layout phase.
+
+Flutter uses the event loop to schedule frame callbacks. When Flutter determines that a new frame is needed — due to user interactions, animations, or state changes — it calls methods like scheduleFrame on the WidgetsBinding. This schedules a callback that gets added to Dart’s event loop.
+
+Once the frame callback is executed, Flutter goes through its rendering pipeline. Each phase may schedule additional work (for example, microtasks or further frame callbacks), and these are all coordinated via the event loop.
+
+If you want to execute some logic right after the rendering pipeline, you can use post frame callbacks. The most common case is to run some context-aware logic in the initState method:
+
+During the build phase, the work is done primarily in Widgets and Elements, while managed mostly by BuildOwner.
+
+While the render objects are crucial for the actual layout and painting of your UI, it is constructed and updated in subsequent phases (layout and paint), not directly during the build phase.
+
+When we say Flutter’s rendering is sublinear, we mean that the computational effort required to render the UI grows slower than linearly with the number of widgets or elements. In other words, if you double the number of widgets, the time or work required to render the frame doesn’t necessarily double.
+
+How does Flutter achieve that?
+
+When the state changes, Flutter compares the new widget tree with the previous one and only updates the parts that have changed. However, it is our job to notify that state has been changed and to provide the optimal widget update scope by calling setState in a correct context (or properly using any other state management). Updating scope takes an Element as an argument, which is exactly what BuildContext encapsulates.
+
+Even if the widget diffing was efficient and there hadn’t been a lot of excess rendering, running all of the build methods still takes some computational power.
+
+Flutter renders UI elements into layers, which are then composited by the GPU. If only a small part of the UI changes, only the corresponding layer(s) need to be updated. Our job here is to isolate different parts of the UI to the composited layers in an optimal way.
+
+Many widgets are immutable and can be cached. If a widget or its subtree hasn’t changed, Flutter reuses the existing render information. This caching strategy avoids redundant computations and drawing operations. This is the part when using const widgets does its purpose.
+
+Let’s break down what happens on the widget layer:
+
+When a widget needs to update (due to state changes, parent changes, or other triggers), its build() method is called. This method returns a new configuration of widgets that describe the UI at that moment.
+
+Widgets in Flutter are immutable. The new widget tree produced by the build() method acts as a blueprint for what the UI should look like. This tree is lightweight and only contains configuration data, not actual UI elements.
+
+Widgets can use keys to maintain their identity across rebuilds. This is especially important in lists or dynamic interfaces, as keys help Flutter match new widget instances with their corresponding elements in the existing tree.
+
+After building a new widget tree, Flutter hands it off to the element layer. If you want to read more on how Flutter translates widgets to elements, here’s a documentation link.
+
+It is important to understand what happens on the Element level to keep the Element tree optimal and avoid excess allocations.
+
+Elements are unmounted in several scenarios. Here are the main cases when Elements get unmounted, and then we will compare them to scenarios when Elements are deactivated.
+
+At the end of the frame, Flutter’s cleanup process iterates over the element tree, finds elements that are no longer attached (i.e., orphaned), and calls their unmount() method to detach them and dispose of any associated resources. That could happen because of parent removal or using a conditional widget.
+
+When a route is fully popped and removed, the entire Element tree of that route is unmounted after the animation completes
+
+Now let’s have a look on when is the Element deactivated and then reactivated again:
+
+The Element remains active even when hidden, unlike conditional rendering which would deactivate it.
+
+BuildOwner contains all the global keys associated with corresponding elements. When inflating the widgets, it retakes the deactivated element if there is a global key, otherwise, creates a new element.
+
+When you reorder items in a ListView, Flutter's reconciliation algorithm uses the unique keys assigned to each widget to reuse their associated Elements.
+
+During the build phase, Flutter compares the new widget list with the previous one. For each widget, it checks the key:
+
+However, don’t expect a performance boost by just adding keys to list items if you don’t intent to reorder them.
+
+Hope you’ve learned something new. I will update this article whenever I find something useful. Next part will cover the layout phase. Follow me on Twitter or Telegram to stay updated.

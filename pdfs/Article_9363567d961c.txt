@@ -1,0 +1,21 @@
+In February’s Q&A, the Angular team clarified how it only updates changed DOM parts, recommended folder-by-feature organization, and streamlined lifecycle hooks. Meanwhile, Manfred Steyer’s new blog post introduced Native Federation as an ESM-based alternative to Module Federation for Micro Frontends.
+
+The monthly Q&A session with the Angular team took place. This time, the stream was more coding-focused, with Mark starting to build an Angular application, but there was also time for questions.
+
+For example, on the topic of how and when Angular re-renders a component, Jeremy gave a solid answer — one worth remembering for job interviews: Angular doesn’t re-render, it only updates those parts of the DOM that have changed.
+
+There were also discussions on structuring Angular applications. According to Jeremy, the revised and upcoming style guide will recommend structuring folders by features. Generally speaking, many approaches are valid, except creating folders like “component” or “service” and putting all classes into them.
+
+When it comes to lifecycle hooks, remember that `onInit` means the component has all its input values ready. `afterViewInit` means that the component’s child components have their input values ready. For modern Signal-based applications, we only need to use `afterNextRender`, `onInit`, and `onDestroy`.
+
+Jeremy also mentioned that he has read the RFC for resources, meaning we’ll hopefully get access to it very soon.
+
+A recurring topic in the Q&As is always Micro Frontends. Angular doesn’t have a built-in solution for them, and it was always promised that at some point, we’d get an official blog post about it.
+
+That post is finally here. On the official Angular blog, Manfred Steyer, as a guest writer, published an article on Micro Frontends — what they are, the challenges they bring, and different implementation approaches.
+
+For example, Module Federation, which is supported by Nx and Angular Architects, is a popular option. However, Manfred chose to showcase Native Federation, an alternative from Angular Architects that shares many similarities with Module Federation.
+
+The main difference? Native Federation loads native ESM-based files at runtime, while Module Federation relies on the bundler’s logic (webpack for now, with Rspack support expected in the future).
+
+https://blog.angular.dev/micro-frontends-with-angular-and-native-federation-7623cfc5f413

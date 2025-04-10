@@ -1,0 +1,51 @@
+BigQuery is a data warehouse from Google Cloud that helps users manage and analyse large amounts of data. The data in BigQuery is stored in columnar format and each column can be stored on the same or different machine. When we query the data, we are charged for the number of bytes scanned. We are separately charged for storage and inserting in streaming.
+
+Our day-to-day tasks include querying around 55 Million records with 127 columns with specific criteria. This entire data is stored in BigQuery as it provides results to almost any query instantaneously. Despite having this huge data, we do not possess any column where we can partition or cluster the table.
+
+One task that we have to do every few months includes updating some fields in the data. This update operation is done to only a few records. BigQuery is not a friendly Data Warehouse when it comes to updates as it induces a lot of cost for each update query. To address this challenge, two primary solutions were considered:
+
+Code optimisation is a much faster and easier task as it doesn’t involve any migration of data.
+
+Since we had to do an update operation to only a few records, we first decided to split the table into the following two: clean_records and unclean_records. The clean_records are the ones where no update operation is required. For unclean_records, we read them with particular batching criteria, performed the update operation on the fly (in pandas DataFrame), and appended them to the clear_records table. There is no update operation happening in the BigQuery and since appending is free, we assumed these operations aren’t costing much.
+
+However, we found that, while reading these unclean_records, we had to perform a SELECT * <project>.<dataset>.unclean_records and this started introducing the read cost. Surprisingly this was more than actually performing the UPDATE operation on the table itself, as during the update only 6 out of the 127 columns were read.
+
+We explored databases that could handle this scale of data. We found PostgreSQL a good option for doing this operation. First, we migrated all the data from BigQuery to GCS in CSV files. After that, we loaded all the files into PostgreSQL using optimised loading scripts. The only cost that we have now is the Disk (300GB) and the Compute (4 cores, 16GB memory) for the database server.
+
+We used the source code which performs an update operation on the original table. This took a lot of time and the estimated time for completion of operation was more than 20 days. We then split the table into two tables — clean_records and unclean_records and did the updates on the unclean_records table only. However, even after these changes it still expected more than 10 days to operate. We also added indexes to the ID field which was used for batching criteria during the updates.
+
+We had optimised the Python code in all possible ways and the only way to reduce our time was to tune the configurable parameters of PostgreSQL. Before we take a deep dive into the optimisations we performed on our database configuration, we will first discuss some internal workings of PostgreSQL.
+
+In Postgres, each tuple is given a unique ID called ctid by the Postgres. This ctid helps to determine the actual location of the tuple in the heap. We have also indexed the table on the id field and a B-tree is created such that each leaf node has (id, ctid). When we run a query with a where clause on the id it will scan the b-tree, determine the ctid of the row/rows, and return the tuple by going to the heap for the corresponding ctid or ctids
+
+When a tuple is updated, Postgres doesn’t update in place, but instead appends the old row and updates the necessary fields. During these updates, the new tuple gets a new ctid. The old tuple is still there in the heap and it is not deleted.
+
+When we perform SELECT * on the above table, only one entry of the ID 4 is returned. Postgres has an internal mechanism to maintain which is the latest object for ID — 4 that is to be returned when queried.
+
+Periodically, a PostgreSQL process called auto-vacuum kicks in which finds such red rows (technically called dead rows/dead tuples) deletes them from the heap, and removes the ctid associated with them. The auto-vacuum process also updates the b-tree for any indexes created on that table.
+
+Moreover, PostgreSQL also has a Query Planner, which finds the optimal way to access and retrieve data based on Table Statistics. It is the purpose of auto-analyze to update the table statistics when some rows are added updated or deleted. The auto-analyze is also kicked in periodically to make updates to the table statistics.
+
+Table Statistics: This refers to information about the distribution and characteristics of data within a table.
+
+The auto-vacuum and auto-analyze are enabled by default. However, the time when they click in is determined by the following two configurations
+
+This means that, until 20% of your rows are updated or deleted, the auto-vacuum process is not going to run, thus keeping the dead tuples in memory. Similarly, until 10% of your rows are not updated or deleted, the table statistics are not updated. This means that those dead rows are going to be in the heap, and the b-tree as well and the table statistics are not going to be updated, also preventing the Query Planner from determining an optimized query plan.
+
+In our use case, the clean_records table had around 47 Million records, and the unclean_records table had around 7.6 Million records. The update operations were done on the unclean_records table, but with the default autovacuum_vacuum_scale_factor = 0.2, it means that the auto-vacuum will come in when almost 1.5 Million records are updated. Similarly, the auto-analyse process is not going to trigger until 0.76 Million records are marked as dead. This prevented the updating of the b-tree index, and also prevented the query planner from working on the latest table statistics, making the batching and updating process slow.
+
+We updated the above scale factor for one specific table to the following values.
+
+We also modified some other configurations like work memory, shared buffers, and cache to efficiently utilise the system hardware.
+
+Based on the updates made to the PostgreSQL configuration as well as to the Python script, we were able to complete the entire batch operation in less than an hour, with barely any cost as the queries were run on PostgreSQL.
+
+For our downstream use case, we only needed to query the data based on various criteria, and was mostly read-only. We used GCP’s data-flow template to migrate the data from PostgreSQL to BigQuery.
+
+On Moving from PostgreSQL to BigQuery, we reduced the cost of this to less than 1% of its original cost and the results can be achieved in just one day. We achieved this by moving our data from BigQuery, which is an OLAP Database to PostgreSQL which is an OLTP Database. Additional changes to the PostgreSQL configuration, boost the speed of performing the batch operations.
+
+We tried one more approach, and instead of updating in-place to the unclean_records table, we decided to read on the fly to read from unclean_record and do the modification in pandas and then appending to clean_records table, followed by deleting that batch from the unclean_records table. Contrary to our assumption, this was slower than the aforementioned approach as auto-vacuum and auto-analyzed clicked way too often.
+
+As we come to the end of this blog post, I want to take a moment to express my sincere gratitude to some indispensable contributors who have played pivotal roles. Sachin Gupta who was the torch bearer for guiding me on PostgreSQL optimisations.
+
+www.uber.com

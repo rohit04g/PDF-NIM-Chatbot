@@ -1,0 +1,73 @@
+Risk management has become a big deal for boards — arguably an obsession. They spend a disproportionate amount of time on it — and not very productively. I think there is a more constructive way for boards (and their management teams) to deal with risk, which I discuss in this Playing to Win/Practitioner Insights piece entitled Risk Management & Strategy: The Centrality of What Would Have to be True. All previous PTW/PI can be found here.
+
+Boards and Risk
+
+One manifestation of the board obsession with risk is compliance with Section 404 of the Sarbanes Oxley Act of 2002 (SOX), which was the legislative response to the financial accounting scandals at Enron, WorldCom, Tyco, Adelphia, et al. At the time, I was chair of the audit committee of one NYSE listed company and member of the audit committee at another, and when I read SOX Section 404, I marveled at just how effective the lobbyists for the auditors and risk management consultants had been. SOX 404 “requires management to assess and report on the effectiveness of internal control over financial reporting.” I watched more than $100 million being spent collectively by the two companies in the following couple of years on preparation for and compliance with SOX 404.
+
+As is usually the case with regulatory responses to catastrophic occurrences, the response has little to do with the cause of the catastrophe. Enron didn’t crater because of financial accounting irregularities. It cratered because its so-called strategy was an elaborate fantasy (propagated by ex-McKinsey partners, BTW).
+
+However, making sure passwords are changed routinely or signing authorities are followed, per SOX 404 compliance, does very, very little to manage the risk a company really faces — though their micro-detailed nature gives boards a sense of comfort and propriety.
+
+At the far end of the spectrum is the other universal manifestation of risk management obsession, and that is management and the board listing the company’s risk factors in its annual Management Discussion & Analysis (MD&A). As you can see from the MD&As of GE (2022, see page 3) or JP Morgan Chase (2023, page 161 — by the way, just two big companies that I randomly picked), the risk management approach here is to mention anything and everything bad that could possibly ever happen as a risk factor — such as adverse regulatory proceedings, competitive pressure, quality issues, and on and on.
+
+I once behaved badly on this front when I challenged our auditors on why they had missed plague of locusts in our MD&A. The auditors didn’t like it much, but it was true — plague of locusts or rivers of blood wouldn’t have appeared out of step with all the many other terrible things listed in our draft MD&A. Management might as well save investor reading time by simply declaring the risk factors to be ‘everything bad imaginable.’
+
+Spending tens of millions of dollars annually on SOX 404 compliance and citing a massive number of risk factors in their MD&A might make management teams and their boards warm and fuzzy about having managed risks. But in my view, these formalities do little to either understand or mitigate the risks facing any modern company. The former is far too micro/narrow, the latter so expansive as to be useless.
+
+Of Knowns & Unknowns…
+
+Interestingly, MD&As leading up to 2008 and 2020 contained no hint of anything about a global financial crisis or global pandemic as risk factors that could unduly damage company performance. All the most excruciatingly thorough SOX 404 compliance didn’t help companies prepare for those two risk manifestations, nor did laundry lists of risk categories.
+
+I raise the following point reluctantly because Donald Rumsfeld (then Secretary of Defense) was one of the central architects of the baseless Iraq war (along with VP Dick Cheney and Secretary of State Colin Powell) that cost hundreds of thousands of innocent Iraqi lives, 4,419 completely unnecessary American military deaths (the official Department of Defense number), and $3 trillion of wasted spending. That having been noted, during a 2002 press briefing on the war, Rumsfeld unveiled the diagram above (right), which has gone on to be called the Rumsfeld Matrix. It is useful — even though its originator was a net negative for the world.
+
+It lays out four different categories of risk. The simplest category is the known knowns. We know the risk exists and know how to deal with it. For example, we know that compromised passwords are a security risk, so we force them to be frequently changed. SOX 404 is all about the known knowns — which unfortunately is only a tiny piece of the risk puzzle.
+
+The known unknowns are things we know for certain are risks but don’t understand them well enough to mitigate them. We know that a plague of locusts is a risk, so it can make a long MD&A list of risk factors. But we don’t know how to mitigate that risk, as with risks like ‘competitive pressure’ or ‘quality issues.’
+
+The unknown knowns category is a bit of an odd one. These are things that we actually know but don’t realize that we do, essentially tacit or unconscious knowledge. The risk is that we will create a problem by making a decision that we have a gut feel will produce a downside, but we haven’t made the reasoning explicit to ourselves, so we make it anyway. In the company world, this is often a problem of uneven distribution of knowledge. Someone in the company knows but not the decision-maker — e.g. an executive in corporate marketing makes a decision that the sales force knows will incense customers.
+
+The unknown unknowns category is the trickiest. We are unaware of the risk and wouldn’t know how to think about it if we were aware. For example, prior to 2008, we didn’t know that derivatives could blow up the global financial system and were completely unaware of the risk presented by the monoline credit default swap (CDS) insurance system. And prior to 2020, we didn’t know the magnitude potential impact of gain of function virology research on global death and destruction.
+
+Again, it is a problem of uneven distribution. I will never forget a casual hallway conversation several months before the inception of the 2008 crash with one of my finance professors, globally recognized options and derivatives expert, John Hull. He fretted that all the world’s financial risk managers were neither cognizant of nor taking into consideration counterparty risk (of the CDS insurers) — and sure enough, mere months later, that unknown unknown blew up the global financial system.
+
+The Real Task of Risk Management
+
+The real task of risk management is to move risks up and right on the Rumsfeld Matrix. First, that entails paring down the list of known unknowns from a long laundry list to a short enough list of the elements to invest in achieving a level of understanding that moves them right to the known knowns box. Second, it entails discovering and making the logic explicit to move risk items up from the unknown knowns box to known knowns box.
+
+Third and finally, it entails being thoughtful but humble about the unknown unknowns. You can’t eliminate that risk. It is life. The future is risk. You can try to eliminate future Enron situations, but then you get Wirecard. Risk just keeps coming. The first step is to move categories of risk up to the known unknowns box so that they can be worked on to become less unknown — in due course.
+
+It All Comes Back to Strategy
+
+The best way to accomplish these three tasks is to leverage strategy. Strategy is nothing more and nothing less than a bet on a risky future, a bet about the industry, customers, capabilities and competitors.
+
+A risk is something that would have to be true (what I call a WWHTBT) about our strategy that might not turn out to be true. Every other risk is either minor or utterly systematic — i.e. it influences everyone similarly, like COVID where everybody got off the hook because it was viewed as ‘not their fault.’
+
+The worst risk is not knowing WWHTBT for the logic of your strategy to be sound because those WWHTBTs are the greatest risks to your strategy. And if your strategy stops working, your financials will go to hell in a handbasket and all the other bureaucratic, procedural risk management efforts will go along with them. Your WWHTBT can help you surface risks and prioritize which you should study to do something about. Hence, the risk management imperative is to be curious and expansive about your WWHTBT.
+
+Specifying WWHTBT for your strategy to continue to operate successfully in the future can raise implicit unknown knowns into explicit known knowns, which if critical, can then be managed. It can also highlight the criticality of particular known unknowns that can be prioritized for work to understand them enough to convert them to known knowns for more effective management of the associated risks. And finally, it can provide hints on the most relevant unknown unknowns, converting them to unknown knowns, which can then be worked on to get eventually to the known known quadrant.
+
+Think about what could alter the WWHTBT on which your strategy depends across the four key elements of strategy:
+
+WWHTBT: Industry
+
+Which WWBTBT about how the industry functions could change in a damaging way? What if a giant company (let’s say, Google) starts giving away something critical to your industry (say a great smartphone operating system — Android)? What kind of substitute would undermine a key WWHTBT for your industry? E.g., might consumers substitute better eating habits for your pharmaceutical products? These damaging or dangerous eventualities may seem implausible, but so were the global financial crisis and the COVID pandemic. Be curious and expansive!
+
+WWHTBT: Customers
+
+What alternative, if presented to customers, would cause them to fundamentally change the behavior which is a WWHTBT of the current strategy? What if they could read their news on an electronic device rather than on printed paper? Would they completely change their behavior — well, they did.
+
+WWHTBT: Capabilities
+
+What competitive move would you be most likely to ignore because it has the effect of undermining the capabilities in which you have invested most and are central to your current strategy’s WWHTBT? If you have invested tens of billions in physical stores, might you try to ignore online sellers until it is too late to stop them?
+
+WWHTBT: Competitors
+
+What could current competitors do that your strategy’s WWHTBT counts on them not doing and would be particularly damaging? What if they shifted from a license revenue model to a subscription model lowering the upfront outlay for customers?
+
+These potential WWHTBT-negators are gigantic business and financial risks in comparison to the SOX 404 risks on which boards typically spend the majority of their risk management time. Yes, who has passwords to what and how often do your security badges need to be updated are important. But that is deck-chair rearranging if the bigger strategic risks aren’t thoroughly worked and managed.
+
+Practitioner Insights
+
+If you have done strategy properly, you have chosen the strategy for which you believe the WWHTBT are most likely to be true and to remain that way. The greatest risk to your strategy is that a key WWHTBT becomes untrue — and that has a decent chance to be devastating!
+
+Use the WWHTBT tool to attempt to surface, prioritize, and manage risks in the known unknowns, unknown knowns, and unknown unknowns quadrants. You can be confident that you will never discern all the risks. That is not the way life works. But as with strategy, you can shorten your odds of future success by starting your risk management with strategy — and what would have to be true for it to continue to be successful.

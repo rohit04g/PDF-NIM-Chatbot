@@ -1,0 +1,89 @@
+Creating reusable components involves balancing flexibility with technical requirements, especially when users need to define their own content. While developing a UI library for Angular, I often encountered this challenge and explored different ways.
+
+In this article, we will examine this topic from the perspective of UI library developers, focusing on the importance of providing a flexible customization API to our users.
+
+Let’s dive straight into a practical example. Suppose we are developing a Field component that renders an input. Typically, an input element is rarely used on its own. In some cases, we need to include a label with automatic binding of the [for] attribute, display feedback such as an error message if the field is invalid, or provide a hint text. Sometimes, we may also want to add an icon or an interactive element to one side of the input field.
+
+Based on the Field’s design, we can identify key content areas that should be exposed for developer customization:
+
+Now, we need to decide on the approach that will allow to fill these areas with a content. Beginner developers occasionally use inputs to pass text content, such as a label or error/hint text. However, this is not the most flexible way to handle content, since it significantly limits us. Even a seemingly minor requirement, like adding an icon (as shown in the example, where the hint has the > key icon), can take us by surprise.
+
+The natural and flexible approach is content projection. It allows to define a piece of the template that will be inserted into the desired area. Angular, along with other modern frameworks, has adopted the concept of slots from Web Components and allows defining placeholders for each content area in our component using ng-content with [select] attribute (by analogy with named slots).
+
+📋 The pseudocode for a template using this approach might look as follows ([attribute] selectors are used for brevity in this example):
+
+👤 And now, from the component user’s perspective, its definition might look something like this:
+
+However, the component user may not need to define content for all existing slots. This leads to the following challenges:
+
+🚧 At this point, we encounter a limitation: there is no way to determine at runtime whether a specific ng-content has been defined for the component.
+
+The presence of content within the corresponding container element can be determined using CSS. By utilizing the :empty pseudo-class and display: none, we can remove the container from the document flow if there is no content inside (moreover, it will also be excluded from the accessibility tree):
+
+The :empty pseudo-class works not only on element nodes but also on text, which is exactly what we need. This approach is used, for example, by Angular Material to hide the empty label of <mat-checkbox>, which adds unnecessary padding.
+
+The relatively new :has (in terms of major browsers support) allows us to manipulate styles through the parent. If a developer adds content to the [suffix] slot, we might need to adjust the input field’s padding to ensure proper alignment and display:
+
+⚠️ It’s important not to overuse such selectors due to their high specificity. For example, the selector described above has a specificity of 0.4.0 (check it), making it quite challenging to override.
+
+A workaround using CSS is a rather situational trick and doesn’t always allow for effective management of component slots. This includes potentially “heavy” selectors in complex scenarios, as well as CSS alone may not always be sufficient. Ideally, we should also control the presence of content at the TS level.
+
+Template fragments offer another option for content projection, enabling runtime operations. This approach allows us to avoid inserting nodes related to undefined slots into the tree. For instance:
+
+And then in the template:
+
+Additionally, it lets us pass context into the slot, which in some cases becomes an extremely powerful customization tool:
+
+As shown in the expected result of our Field, we have a specific requirement for the button displayed in the [suffix] slot: if the control is invalid, we want the button to be colored red. Normally, this would be straightforward if we had direct access to the FormControl instance. However, if we are binding a deeply nested control from a FormArray or FormGroup by its name, it becomes quite tedious.
+
+Using ng-template enables us to leverage context and pass the corresponding control instance into the slot. Conceptually, our slot serves not just as a placeholder for content — it also has some payload that we can utilize.
+
+Now the developer can define the #suffix slot and access data from the context using let-*:
+
+Here, it’s worth discussing the mental model of ng-template, which differs subtly from ng-content. Thanks to the context, templates can serve not only to insert something into a slot but also to modify how the component renders existing content. For instance, when using a Calendar component, we can use it to customize the rendering of individual day cells.
+
+As evident from the second version of the Calendar shown above, modifying a cell often requires more than just styles changes or creating pseudo-elements by CSS. In some cases, we need to insert icons / pins, while in others, tooltip on hover might be necessary. Such scenarios are common in client-driven business logic, making it crucial for the component to offer flexibility for customization.
+
+In the case of the Calendar, the cell template can include context with computed metadata for the displayed day:
+
+Basically, the slot already contains specific content (the day number itself), but the ng-template allows overriding its display pattern based on custom developer logic. Pseudocode of usage:
+
+This approach forms the foundation for creating reusable components in Angular and is used by almost all existing UI libraries in the ecosystem.
+
+After examining the principles of the existing content projection approaches, a logical question arises: when should each be applied? In practice, both ways often go hand in hand when developing UI components, and the choice largely depends on the specific use case.
+
+Let’s take a look at a few more real-world examples.
+
+This is a clear case for using ng-content. Pseudocode of usage:
+
+Accordion is an excellent example of the variability of approaches. A collapsible item has 3 slots: title, icon, and the content itself.
+
+When working with content projection in UI library, my team faced some inconveniences from the lack of a unified method for defining named slots.
+
+Referring back to the Field component, we could create specific directives like [appLabel], [appSuffix], and so on. This would allow us, in the case of ng-content, to have a safer selector (since when selecting by an attribute with a single word, we might run into collisions with native HTML5 attributes). Additionally, if we’re dealing with ng-template, the directive could be attached to the <ng-template />, and we could query it using contentChild by the directive’s locator. Pseudocode of usage:
+
+Initially, we used a similar approach, but later considered adopting a single universal selector across all our components with slots:
+
+⚠️ It’s important to note that in the examples, I will use the selector slot-* without any prefixes. However, when designing a system, it’s worth considering a prefix to avoid conflicts with the native slot attribute. For instance, Vue uses the v-slot naming (perhaps we might one day see ng-slot out of the box in Angular? 😏).
+
+Primarily, this allows for clear identification of the projected content when using a component:
+
+Additionally, when documenting components, it becomes easier to describe projected content — simply specifying the names of the slots and their context, if applicable.
+
+The implementation is straightforward when using ng-content:
+
+When using templates, we can create a lightweight directive that provides SLOT token (to abstract from the specific implementation) and accepts the slot name as an input:
+
+Now, in a UI component with projected content, we can query the list of slots by token locator via contentChildren:
+
+⚠️ contentChildren function must only be called in the initializer of a class member, which prevents us from directly utilizing it in a wrapper to transform the result into a record in .ts. I found it convenient to create a helper pipe for the transformation directly in the template, avoiding the need for a separate class property:
+
+✨ Now, we have a record of all user-defined template slots:
+
+👀 Essentially, we’re arriving at something similar to Conditional Slots in Vue, where the $slots enables proper configuration of rendering based on the presence of a specific slot.
+
+This article is not a deep dive into content projection at the source code level but rather a reflection on how this fundamental mechanism works in Angular. While these considerations may not always be a priority in application code, they become essential when designing system.
+
+The unified slot definition approach has proven to be quite flexible, and I confidently use it when designing APIs for low-level components. However, there is no single correct solution — how you handle content projection in Angular is ultimately dictated by your system’s architecture.
+
+🫡 See you in the next article, where we’ll explore more ways to refine library APIs!

@@ -1,0 +1,9 @@
+When the internet was first created, its usage was to display web pages. However, as technology evolved, websites began fetching data from different sources — not necessarily located on the same server. While this have many advantages, it also has security risks, such as exposing your external resources to unauthorized access.
+
+For example, imagine you have a website called www.yaisoftwares.com, which fetches data from www.github.com/api/ . If someone discovers this API endpoint, they could directly access the data or even attempt different types of attacks on it.
+
+This is where CORS (Cross-Origin Resource Sharing) says NOOOO. I often Think of it as a security guard for the browser —> it ensures that only allowed sources can send requests to a server. When an API endpoint is accessed from a browser, the browser first asks the server if the request’s origin is permitted. If its allowed, the request proceeds, otherwise, the browser blocks it and shows a CORS error(The one you love to hate).
+
+How to resolve a CORS error? You have two main options(to learn more read this )
+
+Share this to help someone struggling to understand CORS!Follow for more content like this.

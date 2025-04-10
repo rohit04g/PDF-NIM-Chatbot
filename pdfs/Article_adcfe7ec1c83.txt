@@ -1,0 +1,71 @@
+Have you ever found yourself tangled in the complexity of building a processing pipeline, wrestling with how to correctly design a pipeline that can parse, authenticate, decrypt, decompress, and enrich the data, only to end up with a system that’s hard to scale, maintain, or even understand? You’re not alone. These essential tasks form the backbone of what we do as software engineers, yet they are often among the most challenging to execute effectively.
+
+This article dives into the Pipes and Filters messaging integration pattern — a cornerstone for constructing sophisticated, efficient, resilient processing pipelines. This critical pattern simplifies the development of complex systems and significantly enhances their resilience, throughput, and architectural integrity. By the end of this article, you’ll have gained essential insights into mastering one of the core patterns in messaging systems, ready to improve your system scalability and robustness.
+
+For starters, we must understand that complex software systems are built mainly by integrating messaging brokers to allow for reliable message exchange between different system parts. Such systems consist of many processing tasks that run sequentially (and can also run in parallel). A single event initializes a chain of processing tasks that must be performed.
+
+For instance, imagine you are building a transaction processing system. When a customer initiates a transaction, your system needs to perform authentication, validation, currency transformation, and fraud detection and then apply the transaction's business logic—for example, transferring funds from one account to another.
+
+The traditional approach to performing these steps involves having a single monolithic component that handles all the data transformations, such as authentication, validation, and currency conversion. The main problem with this approach is that it results in our system becoming tightly coupled, hard to test, hard to refactor, and, most importantly, almost impossible to reuse—violating the single responsibility principle.
+
+Moreover, as our system evolves and requirements change, we must duplicate code to build similar processing pipeline solutions that vary slightly. Imagine being required to add a pipeline that doesn’t need to perform currency transformation but includes a few additional steps for transactions made with cryptocurrency. Building a monolithic processing module would force us to write a new, separate processing pipeline for cryptocurrency transactions, even though most of the tasks are common to what we already have.
+
+These issues with building monolithic components to run a series of tasks motivated software engineers to devise a better approach, and this is where the Pipes and Filters pattern comes into play.
+
+Instead of building a monolithic component, A better solution involves breaking down the processing pipeline into a series of individual components known as filters. Each filter performs a single task, such as authentication, validation, or fraud detection. The results of these computations are then passed from one filter to another through channels, referred to as pipes.
+
+The advantage of this approach lies in the ability to construct complex processing pipelines by composing them from a series of individual and independent units of work. Since each filter is small, it becomes easier to test, refactor, and maintain. The most significant benefits are the composability and reusability it provides. It is straightforward to add or remove filters to enhance the system. Additionally, when creating more pipelines, we can reuse the filters by arranging them in any order required to meet the new requirements or by introducing new filters for the new logic that needs to be added without duplicating any code.
+
+Below are explanations of what pipes and filters represent in this pattern:
+
+Each filter adheres to a defined message schema (request input) that specifies the properties, such as the message payload, input queue, and output queue. Having a shared schema is critical to making each filter reusable and independent.
+
+When a producer sends a message, it is consumed by the first filter in the pipeline to begin processing. The filter performs the unit of work for which it is responsible and produces the response message to the output queue for the following filter to pick up while adhering to the shared message schema. This sequence continues until all the filters have transformed the message.
+
+The connection between filters and pipes is sometimes referred to as a port. Each filter has two ports: the incoming port (a.k.a., inbound port), from which it receives messages, and the output port (a.k.a., outbound port), to which it sends messages. Ports are a general design concept that facilitates system components' decoupling.
+
+Moreover, filters should be idempotent and stateless, meaning they should return the same output given the same input. Introducing a state between filters introduces dependency, leading to coupling, and hinders their independent reuse.
+
+Error handling is critical in this pattern. Errors can occur at any stage of the pipeline, within any filter, requiring a generic mechanism for handling these errors. The mainstream approach involves introducing retries for errors. If retries are ineffective, the problematic message should be published to a dead-letter queue. All filters should use the same dead-letter queue and append any helpful metadata, such as the filter where the message failed, to assist operators in troubleshooting errors when inspecting the dead-letter queue.
+
+Not all filters are created equal. Some perform CPU-intensive work, while others handle I/O tasks. This discrepancy can lead to some filters being slower and more resource-intensive than others. As demand on our system grows, bottlenecks may emerge in these slower filters, causing delays in the entire pipeline as other filters wait for the output to continue processing.
+
+Since each filter operates as an independent component, we can scale them independently. For instance, if our fraud detection filter becomes a system bottleneck, we can add more consumers for that filter to process work in parallel, thereby increasing the system’s throughput. Additionally, because each filter is separate, we can deploy them on different hardware configurations; CPU-intensive tasks can run on more powerful hardware, while less intensive tasks can run on more efficient hardware. This approach can save costs, as not all operations require high-performance hardware.
+
+As general advice, consider configuring auto-scaling based on the number of messages in the queue (pipe). This allows each filter to adjust the number of consumers to meet demand. This scaling occurs automatically if you are utilizing serverless solutions like Lambda and SQS.
+
+While the Pipes and Filters pattern offers significant benefits for designing modular and scalable systems, it also comes with challenges and downsides. Firstly, implementing this pattern inherently increases system complexity. Instead of having a single monolithic module where all the code resides, we now manage many small computation units. This added complexity becomes particularly evident when troubleshooting system errors requires digging through numerous components.
+
+Cost and latency also increase. Utilizing more resources, such as queues and compute infrastructure, raises the overall system’s cost. This cost increase can be substantial if your system processes millions of requests. Additionally, because all the filters are connected asynchronously through pipes, the overall system latency increases due to additional serialization/deserialization and network overhead required to pass messages.
+
+Moreover, monitoring and observability become challenging when computations are distributed across many filters rather than concentrated in a single module. This necessitates implementing distributed tracing solutions, such as AWS X-Ray, to achieve comprehensive observability across all parts of the pipeline and understand the interactions between filters.
+
+Consider using this pattern when:
+
+Some use cases for this pattern include:
+
+Remember to weigh all the pros and cons when choosing a pattern. Patterns should solve problems and should only be chosen after careful consideration.
+
+Let’s consider how we would build a transaction processing system using the Pipes and Filters pattern. The system’s input will be customer orders placed online. Our requirements are to authenticate the request, validate the input, transform the currency to USD if placed in a different currency, and run a fraud detection algorithm. These steps will comprise our processing pipeline. Lastly, we will apply the business logic for the transaction, which includes deducting the funds from the source account and transferring them to the destination account.
+
+We will use the AWS cloud for our resources. For the messaging system, we will use SQS, which will serve as the pipes of our architecture. The filters will consist of Lambda functions that perform the computations. Additionally, we will apply a DLQ to every queue to handle errors. The DLQ will be a shared queue among all the pipes so we can quickly troubleshoot any errors. The final architecture will look like this:
+
+That’s just one example of the Pipes and Filters pattern in action. Remember the main building blocks are the compute resources representing the filters and the messaging broker acting as the pipes. You can use any compute resources and message broker for this.
+
+It’s important to remember that the Pipes and Filters is just one pattern for orchestrating complex workflows or managing sequential processing tasks. A notable alternative for processing similar workflows is Step Functions or State Machines, such as AWS Step Functions. Step Functions can orchestrate complex workflows and branching logic while supporting error handling and state management.
+
+Like Pipes and Filters, Step Functions are built from components (functions) that perform a specific type of computation and are composed to orchestrate a complex workflow. Additionally, you can reuse these functions to build other types of workflows without needing to duplicate the code.
+
+Pipes and Filters primarily focus on the data flow between independent processing units, while Step Functions provide higher-level orchestration and state management capabilities, making them ideal for workflows with conditional logic and stateful interactions.
+
+To conclude, we’ve delved into the Pipes and Filters pattern, learning about its use in designing robust and scalable processing pipelines.
+
+Our discussion started by exploring the traditional processing pipeline approach, which often relied on monolithic modules to execute all necessary computational tasks for a single event. We highlighted this approach's shortcomings, particularly its impact on system modularity, reusability, and maintainability.
+
+We then shifted our focus on the Pipes and Filters pattern, which entails decomposing a monolithic module into a series of individual processing units, known as filters, interconnected by pipes. We outlined the advantages of this strategy, emphasizing how the ability to scale each filter individually enhances scalability and throughput. The pros and cons of this pattern were thoroughly examined alongside scenarios where it proves most beneficial, such as in ETL processes and media processing tasks.
+
+Now, when confronted with constructing a processing pipeline capable of handling complex computations, you possess an additional strategic option to consider. It’s crucial to remember that patterns are tools; their application should not be automatic but rather the result of careful consideration. Assessing the pros and cons of each potential solution is essential, as is contemplating whether it aligns with your system’s current and future states.
+
+For those intrigued by messaging systems and integration patterns, my previous article, 4 Must-Know Cloud Messaging Patterns for Modern Architects and Engineers, will pique your interest.
+
+Hi, and thank you for reading! I’m Nadar Alpenidze, a software developer at AWS. With a passion for knowledge sharing and improving others, I am committed to helping fellow developers grow and excel in their fields. Feel free to connect with me on LinkedIn — I welcome your questions, insights, or even a casual chat about software development. Let’s build a vibrant community together!

@@ -1,0 +1,155 @@
+You’ve just landed in a new city, hotel booked, bags dropped, and ready to explore. But where to go first? That trendy coffee shop everyone’s raving about? A museum off the beaten path? You open up an app, start searching… and quickly find yourself drowning in a sea of irrelevant results. Sure, that Michelin-star restaurant looks amazing, but it’s an hour away!
+
+Traditional search engines often miss a crucial piece of the puzzle: your current location. Who wants to waste precious time trekking across town when the perfect spot could be just around the corner?
+
+In this blog post we show how to build a serverless, location-aware search engine that prioritizes proximity, just like Google Maps!
+
+Whether your app is for finding the nearest coffee shop, museum, barbers shop, hotel, concert or anything else, we’ll guide you through creating a hyperlocal search experience. This means:
+
+The best part? You can build this with Google Cloud’s Agent Builder. It’s serverless, so there’s no infrastructure to manage, no software to install, and no license fees. (BTW…trivago is already using it!)
+
+Let’s get practical! We’ll build a search system for barber shops using Agent Builder. Think of it as creating a dedicated search microservice, accessible via a REST API which can be integrated with your app.
+
+Agent Builder uses a technique called Retrieval Augmented Generation (RAG). This means it combines a retrieval engine with advanced language understanding models. Also, it is fully managed, so you get all the bells and whistles (vector database, embedding model, etc.) without any of the setup hassle.
+
+What will this allow us to do?
+
+And it’s not just fixed distances! This search adjusts to wherever the user is. If they search from a different location, the results change accordingly [lat: 52.2, lon: 20.9] :
+
+This ensures users always get the most relevant results, no matter where they are. Keep in mind though, that before implementing any location-aware features, it’s essential to obtain explicit permission from users to access their location data. This not only ensures compliance with privacy regulations but also builds trust with your users. Clearly explain why your app needs location access and allow users to control how and when their location is shared. Here we will assume you have these things covered and your app is able to provide reference location when sending search requests.
+
+Alright, enough talk, let’s get our hands dirty! As any engineer knows, there’s no fun without data. So, we’ll start by generating some synthetic data for our barber shop search application.
+
+To do this, we’ll fire up Vertex AI Colab Enterprise. This gives us a collaborative coding environment right in our browser. Think of it as a supercharged notebook where we can write and run code, experiment with data, and simulate our search application.
+
+Ready to code? Let’s go!
+
+Okay, let’s start creating our city of barber shops! The first step is to generate some random locations within a defined geographical area. They will represent the locations of our fictional barber shops.
+
+We need to decide:
+
+Once we have these parameters, we can use the code below to generate random coordinates (latitude and longitude) within our chosen area. These coordinates will be the foundation of our synthetic data.
+
+I have defined the geographical boundaries for our virtual barber shop landscape to cover Warsaw:
+
+And for those who want to create their own virtual city, here’s a quick reminder on how to get coordinates that will define the area:
+
+Now that we have our Warsaw boundaries defined, we can move on to generating those random locations within this area. We will generate 10 000 locations:
+
+Great! We have our random coordinates, but those are just numbers. To make our data more realistic and useful, we’ll turn those coordinates into actual addresses.
+
+How? With the help of the Google Maps Geocoding API! This handy tool lets us take latitude and longitude values and translate them into human-readable addresses.
+
+Imagine feeding it a coordinate like (52.231958, 21.006725) and getting back an address like "Plac Defilad 1, 00-901 Warszawa, Poland". That's much more helpful for our search engine, right?
+
+Just like most APIs, the Google Maps Geocoding API requires an API key to track and control usage. Think of it as your unique identifier when accessing the service.
+
+Here’s how you can get your hands on an API key:
+
+Once you have your API key, you can include it in your code when making requests to the Geocoding API. This allows Google Cloud to authenticate your requests and provide you with the address information you need.
+
+It’s time to see some results. After running that code to transform our random coordinates into addresses, we should have a dataset that looks something like this:
+
+Next, we’ll use Gemini to generate creative and fitting names based on their addresses.
+
+Imagine a barber shop located at “Plac Defilad 1, 00–901 Warszawa, Poland”. Gemini could suggest names like “Defilada Barbers” or “Royal Cut”. Pretty cool, right?
+
+You got it! After feeding those addresses to Gemini, we should see some creative barber shop names popping up. Here’s what the output might look like:
+
+Now, let’s compile all this information into a proper catalog of barber shops. This is where we’ll bring together the locations, addresses, and shop names we’ve generated.
+
+Here’s the key: to make this data work seamlessly with our search engine (which we’ll build with Agent Builder), we need to structure the shop_address attribute in a specific way. It needs to be a JSON object with a key named "address" that holds the actual address text.
+
+See how the shop_address is now a JSON object with the address nested inside? This structure is crucial because it allows Agent Builder to easily recognize and utilize the address information for location-aware search.
+
+Time to generate our barber shop catalog and save it to a JSONL file. This format is essentially a text file where each line is a valid JSON object, perfect for storing our structured data.
+
+Now that we have our barber shop data neatly organized in a JSONL file, it’s time to bring it into BigQuery.
+
+BigQuery, as you may know, is Google Cloud’s fully managed, serverless data warehouse. It’s incredibly powerful for handling all sorts of data, from structured tables to semi-structured formats like JSON. And guess what? It’s the perfect home for our barber shop catalog!
+
+Importing our JSONL file is a breeze. We’ll use BigQuery’s BigFrames library, which allows us to interact with BigQuery using familiar Pandas DataFrames.
+
+Here’s the gist of it:
+
+And that’s it! Our barber shop catalog will be sitting pretty in BigQuery, ready to be indexed and searched. Visit BigQuery to preview your table!
+
+While I had to walk through those data generation steps for demonstration purposes, you likely already have a catalog of data ready to go.
+
+And that’s where the real advantage of Agent Builder is manifested. With your data in BigQuery, building a powerful search experience is incredibly fast.
+
+Here’s how you can get started with Agent Builder:
+
+Agent Builder is incredibly versatile. It can help you build specialized search applications fine-tuned for specific industries like retail, media, or healthcare. But for our barber shop search, we’ll start with a generic search app. This gives us a solid foundation to build upon and allows us to explore the core features of Agent Builder.
+
+Alright, let’s bring our search application to life!
+
+First things first, we need to give it a name. This is how you’ll identify your application within the Agent Builder environment. Choose something descriptive and memorable, like “WarsawBarberSearch” or “HyperlocalBarberFinder”.
+
+Next, you’ll need to select the location where your application will be hosted and where your indexed data will be stored. This is important for performance and data residency reasons. Choose a location that’s geographically close to your users or where your data is primarily located.
+
+Once you’ve given your application a name and chosen a location, you’re ready to move on to the next step: connecting your data!
+
+Now, let’s talk about how Agent Builder organizes your data. It uses “data stores” — think of them as containers specifically designed to hold the information you want to make searchable.
+
+Select BigQuery as source of data you would like to index:
+
+Almost there! Now it’s time to connect the dots between our data in BigQuery and our new search application in Agent Builder.
+
+Here’s what we need to do:
+
+By providing this information, Agent Builder understands where to find our data and how it’s organized.
+
+Final step in where we fine-tune how Agent Builder understands and uses our data.
+
+Here’s what we can do:
+
+But here’s the most important part: Agent Builder automatically recognized that our shop_address attribute is of type "geolocation" which is essential for building our location-aware search.
+
+With a click of the “Create” button, Agent Builder springs into action. It sets up your search application and, most importantly, starts indexing your BigQuery table. This is where Agent Builder analyzes your data, identifies key information, and organizes it for efficient search.
+
+Our search microservice is now ready! We can preview how it works from the built-in UI:
+
+Our search microservice is ready to roll. And the best part? Agent Builder provides a built-in UI where we can preview how it works.
+
+This UI is a fantastic way to get a feel for how your search application behaves. You can type in queries, see the results, and even explore how different settings affect the search experience.
+
+Now, I know our barber shop data is fairly basic. We have names, addresses, and scores, but not much in terms of rich text descriptions or images. But imagine if we had more detailed information about each barber shop — things like services offered, customer reviews, photos of haircuts, and so on. In that case, this built-in UI would be an even more powerful tool. It would allow us to quickly add a fully functional search interface to our application with minimal effort.
+
+For now, we’ll use the built-in UI to get a quick preview of our search engine in action. But keep in mind that this UI is just one way to interact with your search application. We’ll also explore how to use the REST API to programmatically send queries and retrieve results, giving you maximum flexibility in how you integrate search into your application.
+
+Our search application is now technically location-aware thanks to that shop_address field. But we need to do a bit more to activate it when searching. We need to tell Agent Builder to use the location information as a filter when processing search queries.
+
+To do this, we’ll interact with our search application programmatically. I’ve created a custom class called DatastoreService with a search method. This method allows us to send search queries to our application and specify various parameters, including location filters.
+
+the filter attribute is where the magic of location-aware search happens!
+
+Let’s break down how it works:
+
+So, if we send a search query with a distance of 10 kilometers, Agent Builder will only return results for barber shops that fall within that 10-kilometer radius of the specified location:
+
+In order to show it really works let’s visualize the results on a map! I’m quite fond of the Bokeh library for this purpose. It’s a versatile Python library that allows us to create interactive plots and charts, including maps. It has excellent tools for displaying custom points on Google Maps, which is precisely what we need.
+
+It’s also helpful to have a dedicated function for plotting our search results on a map.
+
+Here’s how I’d approach creating this auxiliary function:
+
+Function Name: plot_search_results
+
+Input Parameters:
+
+It’s playtime! Now that we have all the pieces in place — the data, the search application, and the visualization tools — we can finally see our location-aware search engine in action.
+
+Through this interactive exploration, we can gain a deeper understanding of how our location-aware search engine behaves and how we can optimize it to provide the most relevant and useful results to our users. Hope you enjoyed it. Share in comments how it works with your use case!
+
+In this blog post, I showed you how to build a serverless, location-aware search engine using BigQuery and Google Cloud’s Agent Builder.
+
+I started by highlighting the common frustration of irrelevant search results, particularly when proximity is a key factor. Then, I introduced Agent Builder as a solution for creating a natural language, location-aware search experience similar to Google Maps, citing trivago as a successful example.
+
+I outlined the process of building a search system for barber shops, using synthetic data that I generated with Python and the Google Maps API. I then imported this data into BigQuery and indexed it with Agent Builder. I emphasized the ease of setting up a search application with Agent Builder and its ability to recognize geolocation attributes.
+
+Finally, I demonstrated how to programmatically interact with the search application using REST API. I concluded by simulating end application by visualizing location-aware search results on a map.
+
+This article is authored by Lukasz Olejniczak — Customer Engineer at Google Cloud. The views expressed are those of the authors and don’t necessarily reflect those of Google.
+
+Please clap for this article if you enjoyed reading it. For more about google cloud, data science, data engineering, and AI/ML follow me on LinkedIn.

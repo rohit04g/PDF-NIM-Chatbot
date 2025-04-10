@@ -1,0 +1,133 @@
+Marketing Mix Modeling is an old statistical approach that tries to understand the impact of marketing campaigns on KPIs such as sales, conversions and traffic.
+
+Every MMM model is basically a regression, in which the regressors (marketing activities and spends, macro-economic factors, seasonality, etc) are fitted vs the target to predict. The obtained coefficients are then used to compute ROI (Return-on-investment) and other efficiency KPIs, eg:
+
+MMM approaches can be used to understand the past and make scenarios for the future. Knowing the impact of your marketing campaigns can help to guide budget allocation decisions, and answer questions like :
+
+How did the marketing channels drive my revenue or other KPI?
+
+What was my marketing return on investment (ROI)?
+
+How do I optimize my marketing budget allocation for the future?
+
+In MMM, we usually consider different types of variables in our model that can directly affect our target signal. These are typically :
+
+Traditional MMM often use standard regression techniques based on what is called Maximum Likelihood Estimate. This often requires a lot of data to be stable, and provides no information about uncertainty. Traditional MMM regressions provide point estimates, meaning that if our goal is to estimate the coefficients β of each marketing channel (roughly equivalent to our marginal ROI), we would get a scalar value (1.2, 10.5, -2.3, etc…).
+
+Bayesian MMM rely on a different approach which uses Bayes theorem and Markov Chain Monte Carlo sampling to estimate our parameters β. But instead of having a scalar value, we get distributions over our parameters. This becomes handy because we can have access to a range of credible value for our parameters, take the mean if we need a value, or a percentile, and get a notion of the standard deviation to represent the uncertainty around our parameter.
+
+Imagine you are asking a frequentist and a bayesian about tomorrow’s temperature:
+
+Frequentist : tomorrow’s forecasted temperature is 12.5 °C
+
+Bayesian : tomorrow’s forecasted temperature is a gaussian centered around 11.5 °C with a standard deviation of 1.2°C.
+
+Knowing this uncertainty is very helpful when it comes to taking decisions. Of course, this view is a bit simplistic since frequentists will object that we can use p-values for our point estimates and have access to confidence intervals.
+
+Bayesian models are also very good at dealing with small amounts of data. Data can always have missing values or be too coarse. This kind of noisy data environment can be a challenge for traditional methods that rely solely upon data to draw their conclusions. Bayesian methods can deal with data sparsity by injecting prior knowledge to the model. Uncertainty in the model parameters will decrease when the dataset increases.
+
+Google Meridian includes two important concepts which are adstock and saturation.
+
+Adstock models the effect of spend on sales being not instantaneous but accumulating over time.
+
+Saturation effect models the fact that the effect of spend on sales is not linear but saturates at some point (also called Diminishing Returns).
+
+Meridian can perform hierarchical modelling, meaning that you can model groups of data (for ex: regions) in one single model. This is often handy as it is a good solution between having one model for every region (also called unpooled models) and one model which “averages” all regions (pooled models). In this approach, regions kind of “learn” together while keeping their specificity.
+
+Here is a simplified view of the components used by Meridian. As mentionned earlier, it is a regression model including several variables.
+
+This model will learn parameters from our data 𝑧 (control) and 𝑥 (marketing spends), remember that those learned parameters are actually distributions:
+
+Once the model is fitted, we will use it to understand contributions of spends vs our sales, and to optimize our budget allocation with the help of response curves.
+
+Let’s now use the Meridian library with data. The first step is to install Meridian with either pip or poetry : pip install google-meridian or poetry add google-meridian
+
+We will then get the data and start defining columns which are of interest to us.
+
+For the control variables, we will use all of the holidays variables in the dataset. Our KPI will be sales, and the time granularity will be weekly.
+
+Next, we will select our Media variables. Meridian makes a difference between media data and media spends:
+
+It is usually recommended to use exposure metrics as direct inputs into the model as they represent how media activity has been consumed by consumers. However, no one plans a budget using execution data. If you use MMM to optimize budget planning, my advice would be to use data you control, ie spends.
+
+In our use case, we will only use the spends from 5 channels: Newspaper, Radio, TV, Social Media and Online Display.
+
+We will then map the columns to their data type so that Meridian can understand them. The CoordToColumns object will help us do that, and requires mandatory information :
+
+There several other parameters which can be used, namely the geo parameter if we have several groups (geographies for ex.), population , reach , frequency . Details about these are out of this scope but the documentation can be found here.
+
+We can therefore create our column mappings :
+
+Next, we will use our dataframe and the columns mappings to create a data object to be used by the model.
+
+Sales
+
+There seems to be a nice seasonality with peaks around Christmas. Trend is overall constant with a level oscillating between 50 and 150M.
+
+Media Spends
+
+We observe a clearly decreasing trend for newspaper correlated with an increasing trend for Social Media. Spends seem to be also increasing at or just before Christmas.
+
+Building the model and choosing the right parameters can be quite complex as there are a lot of options available. I will share here my findings but feel free to explore by yourself.
+
+The first part is to choose the priors for our media spends. We will use the PriorDistribution class which allows us to define several variables. You can change the priors of almost any parameter of the model (mu, tau, gamma, beta, etc…), but for now we will only focus on the beta which are the coefficients of our media variables. My recommendation is, if you are using spends only, to use the beta_m . You can choose the roi_m or mroi_m but you will need to adapt the code to use a different prior.
+
+When defining the model specifications, you will then be able to define :
+
+It is also possible to define a train-test split to avoid overfitting via the holdout_id parameter. I won’t cover it here, but it is a best practice to have this split done for model selection.
+
+In a nutshell:
+
+Fitting the model can be slow if you have a large number of data points and variables. I recommend to start with 2 chains, and leave the default number of samples:
+
+Once the model is done running, we will perform a series of checks to ensure that we can use it confidently.
+
+R-hat close to 1.0 indicate convergence. R-hat < 1.2 indicates approximate convergence and is a reasonable threshold for many problems.
+
+A lack of convergence typically has one of two culprits. Either the model is very poorly misspecified for the data, which can be in the likelihood (model specification) or in the prior. Or, there is not enough burnin, meaning n_adapt + n_burnin is not large enough.
+
+We see that all r-hat values are below 1.02, which indicates no divergence or issue during training.
+
+2. Model trace
+
+The model trace contains the sample values from the chains. A nice trace is when the two posterior distributions (as we have 2 chains) for a given parameter overlap nicely. In the diagram below, you can see that blue and black lines on the left-hand side nicely overlap :
+
+3. Prior vs Posterior distributions
+
+To know if our model has learned during fitting, we will compare prior vs posterior distribution. If they perfectly overlap, this means that our model has not shifted its prior distributions and therefore has probably not learned anything, or that the priors were misspecified. To make sure our model has learned, we would like to see a slight shift in distributions :
+
+We clearly that that the priors and posteriors don’t overlap. For TV and Social Media for ex, we see that the orange HalfNormal priors have shifted to the blue quasi-Normal distributions.
+
+4. R2 and Model Fit
+
+Finally, we will use metrics to evaluate our model fit. You probably know about metrics like R2, MAPE, etc., so let’s have a look at those values:
+
+Obviously, a R2 of 0.54 is not great at all. We could improve that by either adding more knots in the baseline, or more data to the model, or play with the priors to try to capture more information.
+
+Let’s now plot the model:
+
+Remember that one of the objectives of MMM is to provide you with media contributions vs your sales. This is what we will look at with a waterfall diagram :
+
+What we usually expect is to have a baseline between 60 and 80%. Keep in mind that this value can be very sensitive and depend on the model specification and parameters. I encourage you to play with different knots values and priors and see the impact it can have on the model.
+
+The spend versus contribution chart compares the spend and incremental revenue or KPI split between channels. The green bar highlights the return on investment (ROI) for each channel.
+
+We see that the highest ROI comes from Social Media, followed by TV. But this is also where the uncertainty interval is the largest. MMM is not an exact answer : it gives you values AND uncertainty associated to those. My opinion here is that uncertainty intervals are very large. Maybe we should use more sampling steps or add more variables to the model.
+
+Remember that one of the objectives of the MMM is to propose an optimal allocation of spends to maximize revenue. This can be done first by looking at what we call response curves. Response curves describe the relationship between marketing spend and the resulting incremental revenue.
+
+We can see there that :
+
+The goal of the optimization will be to take those curves and navigate to find the best combination of value that maximize our sales equation. We know that sales = f(media, control, baseline), and we are trying to find the media* values that maximize our function.
+
+We can choose between several optimization problems, for ex:
+
+Let’s use Meridian to optimize our budget and maximize sales (scenario 1). We will use the default parameters here but it is possible to fine-tune the constraints on each channel to limit the search scope.
+
+We can see that the optimizer recommends to decrease the spends for Newspaper, Online Display and recommends to increase spends for Radio, Social Media and TV.
+
+3% increase in revenue just by rebalancing our budget ! Of course this conclusion is a bit hasty. First, replaying the past is easy. You have no guarantee that your baseline sales (60%) would behave the same next year. Think of Covid. Second, our model does not account for interactions between channels. What we have used here is a simple additional model, but some approaches use a log-log multiplicative model to account for interactions between variables. Third, there is uncertainty in our response curves which is not handled by the optimizer, as it only takes the average response curve for each channel. Response curves with uncertainty look like the picture below and optimizing under uncertainty becomes a lot more complex :
+
+However, it still gives you an idea of where you are maybe over or under-spending.
+
+MMM is a complex but powerful tool that can uncover insights from your marketing data, help you understand your marketing efficiency and assist you in budget planning. The new methods relying on Bayesian inference provide nice feature such as adstock and saturation modelling, incorporation of geographic-level data, uncertainty levels and optimization capabilities. Happy coding.

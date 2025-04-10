@@ -1,0 +1,183 @@
+In this blog, we will study all the advanced concepts of ReactJS. You can clear any Frontend Developer interview after reading this one blog. After reading this, you can also build your own UI library like ReactJS.
+
+If you have worked with ReactJS, you may have heard much about this term. Let's understand it in depth.
+
+In ReactJS, we write JSX. JSX stands for JavaScript XML. It is a syntax introduced by ReactJS, which is similar to HTML. Our frontend apps run on browsers, and browsers don’t understand JSX. The only language browsers understand is JavaScript. Somehow, this JSX needs to be transformed into JavaScript first. It is done by a ReactJS compiler called Babel.
+
+It takes the JSX and calls the React.createElement() function. This createElement() function returns a JavaScript Object called React Element.
+
+Just read the below sentence and put it into your mind. We will learn the entire process in detail:The main goal is to get React Element from JSX. You can manually write code by calling React.createElement(), or you can write JSX and let the babel convert your JSX code into React Element.
+
+React.createElement() is the fundamental function used by React to create elements (React Nodes). JSX is just a syntactic sugar for React.createElement().
+
+First, we will learn how to translate JSX into React.createElement() function call then we will learn what will be the output of this function.
+
+For example, if you write this JSX:
+
+It is internally converted to:
+
+Where:
+
+type (string or component):
+
+props (object):
+
+...children (optional):
+
+Example 1:
+
+JSX:
+
+Its React.createElement function call:
+
+Example 2:
+
+JSX:
+
+Its React.createElement function call:
+
+Example 3:
+
+JSX:
+
+Its React.createElement function call:
+
+Example 4:
+
+JSX:
+
+Its React.createElement function call:
+
+As I told you, children are optional, so if there are no children, then we will omit it in the function call.
+
+Complex Example:
+
+I guess we understood the simple examples. Let's do a complex example of this to fully understand:
+
+JSX:
+
+We will do step by step.
+
+Step 1: Convert UserCard Component
+
+Step 2: Convert the App Component
+
+Now, we understand how to convert JSX into React.createElement() function call. You can either write the HTML kind of syntax or directly write the createElement() function into your files. If you write HTML then internally babel will convert that into the createElement() function call.
+
+This function call returns a plain JavaScript object and this object is called React Element.
+
+It returns an object like this:
+
+Note: Inside props you will get props (attributes of tag) as well as children also.
+
+<div>hello</div> and <div chilren=”hello” /> is same. So, along with other attributes, you get children also in the props object.
+
+Example:
+
+Output:
+
+Example:
+
+JSX:
+
+React.createElement function call:
+
+Output:
+
+I guess we have done enough examples to understand this concept. If you still have doubts, then you can ask in the comments.
+
+Rendering in React refers to the process of taking React elements (JSX or React.createElement() objects) and converting them into actual DOM elements that appear on the screen.
+
+Rendering are of two types:
+
+Below is the code that does the work:
+
+If you do create a reactJS app, then go to index.jsx to see the code.
+
+Steps:
+
+In a large application, there are thousands of components and nestings, so we end up with a massive JS Object in a tree-like structure. Constructing a DOM from this huge JS object takes a lot of time. But React only constructs DOM from scratch the first time.
+
+You have noticed that when you build your React app the first time, it takes a lot of time. But in the next renders/ re-renders, it doesn’t take time. This optimisation is due to the “Virtual DOM” and “reconciliation” algorithms.
+
+We will study Virtual DOM in detail in this blog.
+
+Re-rendering in React is the process where a component updates and executes again to reflect changes in the UI. However, not every change triggers a re-render — React is optimized to only re-render components when necessary.
+
+A component re-renders when:
+
+A component will re-render when its state is updated using useState .
+
+Here, whenever button is clicked, the count state will change and the component will re-render to show to latest change.
+
+If you click on the button then the count state will change. It will re-render the Parent (due to first rule) and also re-render the Child because Child is taken count as props. Whenever the state of the props changes, then the component re-renders.
+
+Even if a child’s props don’t change, it will still re-render if its parent re-renders.
+
+If you don’t want the Child to re-render in this case, then you can wrap the Child in React.memo(). It will prevent re-rendering in this condition. It will only re-render on the first and second conditions.
+
+You may be wondering, if we don’t use React memo() and the entire subtree re-renders whenever any component re-renders, then wouldn’t our app be too slow?Ans) ReactJS is very clever. It uses Virtual DOM and Reconciliation algo to optimise it. We will study it in the next section of this blog.
+
+In React 18+, components inside <React.StrictMode> re-render twice in development mode to detect side effects.
+
+In development mode, you’ll see “Component Rendered!” twice in the console.This doesn’t happen in production, so it’s safe to ignore it.
+
+The Virtual DOM (V-DOM) is a lightweight copy of the real DOM that React maintains in memory. It allows React to efficiently update the UI without directly modifying the real DOM on every change.
+
+Why does React use a Virtual DOM?
+
+Step 1: Render Phase (Creating the V-DOM):
+
+React calls App(), creating a Virtual DOM representation of:
+
+This V-DOM is not real, just a JavaScript object in a tree-like structure.
+
+Step 2: Diffing (Comparing Old & New Virtual DOM):When state/props change, React creates a new Virtual DOM and compares it with the previous Virtual DOM.
+
+Clicking a button updates count → React generates a new Virtual DOM:
+
+React compares this with the old V-DOM using its Reconciliation Algorithm.
+
+Step 3: Patching the Real DOM (Efficient Updates)
+
+Example:
+
+How does this update happen? Ans) If you learnt DOM in JavaScript, then it's the same. It uses document.getElementByID().innerHTML = “Count: 1”. It's simple JavaScript internally. What part should be updated, it chooses cleverly with the help of diffing algorithms to minimize DOM updates.
+
+Reconciliation is React’s algorithm to efficiently update the real DOM by minimizing changes.
+
+2. Rule 2: Elements of the Same Type Are Updated Efficiently:If the element type is the same, React only updates the changed attributes.
+
+3. Rule 3: Lists Are Compared Using Keys (Keyed Diffing):When rendering lists, React uses keys to track changes efficiently.
+
+Bad Code (No Keys) → Inefficient Reconciliation
+
+Good Code(With Keys) → Optimized Reconciliation
+
+Using unique key makes lists render much faster. I guess now you understand why the browser console always gives a warning whenever we forget to give the key attribute.
+
+If you read the re-rendering section carefully, you can see in the 3rd case of re-rendering, when children are not accepting any props from the parent, then it is unnecessary to re-render all children when the parent re-renders. To prevent these unnecessary re-renders, you should wrap children inside React.memo. While exporting, do this:
+
+This will prevent re-rendering of 3rd condition. But still re-renders in 1st & 2nd condition which is required to reflect changes in UI.
+
+Example:
+
+Suppose you have a function that takes some argument and, based on that, it does a heavy calculation to get the result. If u don’t use useMemo(), then every time u call this function, it will do a calculation to give the result. Suppose a function takes (a, b) as an argument; you called this function for (2, 3), and it does the calculation; you called this function for the same (2,3) again, and it will do the calculation again. If you use useMemo(), then it will not run the whole function and do the calculations for the same argument again. It will return the previous cached value. If u studied DSA, then it is the same as DP. It doesn’t run the function if it has cached its value.
+
+Example:
+
+Use useMemo() for expensive calculations that don’t need to be recomputed frequently.
+
+When a component is re-rendered, whatever functions u wrote in it will be newly created, and a new reference of that function will be attached. But if you wrap your function in useCallback(), the same function reference will be attached to the next renders, and no new function will be created.
+
+It will do 2 optimisations:
+
+Example:
+
+Use useCallback() when passing functions to child components.
+
+If you want to learn System Design, then refer to this blog.
+
+If you liked my efforts and want to support it, then you can donate any amount on the below:
+
+You can connect me on:

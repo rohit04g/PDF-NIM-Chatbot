@@ -1,0 +1,17 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.so
+
+# Environment files
+.env
+.venv/
+*.egg-info/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# PDF folder (optional: remove this line if you want to upload PDFs)
+# pdfs/

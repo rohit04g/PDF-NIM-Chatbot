@@ -1,0 +1,9 @@
+Fetching data from an API is a common requirement in web development. JavaScript provides the fetch() function to make network requests and retrieve data from external sources. This article explains how to efficiently fetch data and process the response.
+
+The fetch() function requests data from a given URL and returns a Promise, allowing JavaScript to continue executing other tasks while waiting for the response.
+
+Here’s how we can fetch recipes from an API and display the results dynamically:
+
+Using async/await makes working with APIs in JavaScript much more straightforward. In this example, we fetched recipe data from an API, handled errors, and displayed the results dynamically. This approach can be applied to any API integration in web development.
+
+Before you go:

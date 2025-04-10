@@ -1,0 +1,25 @@
+Artificial Intelligence (AI) has revolutionized content generation, enabling developers to build applications that generate text dynamically based on user input. In this interactive article, we’ll explore how to integrate AI-generated output using the free AI model from OpenRouter.ai, specifically deepseek/deepseek-r1-distill-llama-70b:free.
+
+You can actually choose any other model!
+
+https://openrouter.ai/
+
+By the end of this guide, you will have a working AI-powered script generator using Next.js and OpenRouter.ai.
+
+To interact with the AI model, we need to configure the OpenRouter API. First, install the OpenAI client library:
+
+Then, define the API setup in your Next.js project:
+
+Ensure you set the API token in your environment variables (.env.local):
+
+Next, create an API route (pages/api/aigenerate/route.ts) to handle user prompts and fetch AI-generated responses:
+
+Now, let’s create an interactive UI where users can enter a prompt and receive AI-generated content.
+
+Install dependencies:
+
+Create a React component (app/page.tsx) to handle user interaction:
+
+Start your Next.js app:
+
+And hooray! You now have your own AI coding assistant. You can customize it as you like or use it as is. There are now zero excuses not to build your next AI-based app!

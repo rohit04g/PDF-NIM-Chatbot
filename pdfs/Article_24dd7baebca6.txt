@@ -1,0 +1,71 @@
+I don’t have much of an interest in steam engines, nor did I have an interest in thermodynamics until I dove into an unexpected rabbit hole. I was trying to understand the origins of quantum mechanics. Max Planck, widely regarded as one of the founders of quantum mechanics, wrote numerous papers on the subject, one of which I tried reading.
+
+It was one of his earlier works on blackbody radiation. While not entirely about quantum mechanics, blackbody radiation marked the shift from classical physics to quantum mechanics. In the paper, he mentions entropy extensively and before I could continue reading on, I had to understand what entropy was.
+
+This led me to reading a paper written by the father of entropy and the man who made immense contributions to thermodynamics, specifically the second law of thermodynamics, Rudolf Clausius. The problem with Clausius was that his writing seems near unfathomable. The paper I found on him was “On the Mechanical Theory of Heat, with Applications to the Steam Engine and to Physical Properties of Bodies.” A mouthful, yea, I read three pages before calling it quits.
+
+The man introduces a differential equation with no context for what it is and what the variables represent. He spends an entire page simplifying the equation, then another page claiming that variable x will cause the value of variable y to change without, again, any context to what those variables represent and why they are dependent on each other. Also, a very important point, who wants to read a paper that starts off with a differential equation unless they’re forced to?
+
+Out of frustration, I dropped his confusing paper and have now finagled my hands onto a copy of The Second Law by P.W. Atkins which seems to be promising. I’ve gone through the extent of explaining this entire journey for one reason. I’ve come to realize that many of the published papers that I thought were meant to represent the pinnacle of discovery were really just a mere showoff. These “geniuses” didn’t aim to share their discoveries with the world, but rather the elitist group of scientists and physicists that they were in a close circles with.
+
+Clausius’ paper is a prime example of that, or maybe I’m stupid and not understanding it properly. A lot of research papers I’ve read, like that of Clausius and Planck, are filled with unnecessary jargon, intellectual flair, and egotism. It feels as if simple concepts were stretched to be made difficult for no apparent reason other than to keep up appearances of how intelligent they are.
+
+However, despite all of this, the discoveries these men made have stood the test of time and have allowed others after them to come and expand on them. Maybe it was just the style of the time, but it still feels like unnecessary gatekeeping.
+
+I’m not one to praise extensively so it’s hard for me to balance my criticism with positive words, but the work these men have done is profound. I have put in every effort to try and learn about it despite their reluctance to write a simple, to the point, paper describing what it is they have discovered.
+
+Thermodynamics seems to represent an introduction to quantum mechanics, surprisingly so. One of the earlier discoveries of atoms actually came from a physicist working on steam engines and, in turn, thermodynamics. The idea, however, was widely rejected by the scientific community of the time. So widely rejected that the physicist ended up taking his own life over the rejection. We’ll get to that tragedy at some point too.
+
+Off to a grim start, I know, but I wanted to emphasize that thermodynamics is more than just a field of science. It may just be the bridge between classical physics and the physics of quantum mechanics. And properly understanding quantum mechanics, right now, is the best way to get a better understanding of the universe or maybe god if you’re the religious type.
+
+I’m not religious in the institutionalized sense, but I do get curious about a higher power at play, call it nature, the universe, or god. Thermodynamics feels like one of those rare entrances to understanding what some might call god. And if not, you’ll at least know how a lot of things around you work.
+
+Imagine this. Back in the day, 1800s or whatever, you’re a conductor for a steam engine train. For simplicity’s sake, imagine you’ve got 10 pieces of coal and you’ve been told that one piece of coal, when burned in the furnace, would move the train 1 mile. You think, okay cool, 10 pieces would take me 10 miles. So you shovel in the 10 pieces as directed, you can feel the heat of it all, but the train only moves 1 mile. What gives?
+
+This was a serious technological - and economic crisis - at the time. The input of fuel, coal in this case, did not result in the expected useful work. Thus, the study of steam engines, or the transfer of heat to useful work, came at the priority of physicists at the time.
+
+For industries were at stake, and more importantly, rich men were losing money. The study of heat and its transformation to useful work within a certain time became known as thermodynamics. The aim of thermodynamics was to solve the problem of steam engines failing to convert fuel into useful work — moving the train as far as the coal should allow.
+
+Sadi Carnot is widely regarded as the initiator of thermodynamics, many after him expanded on his work to create the field as we know it today. Carnot saw the inefficiencies of the current steam engines of his time and he set out to create the perfect theoretical engine. That theoretical model is now known as the Carnot Engine, it’s not real, but it’s supposed to be as perfect as an engine can get. Everything is perfectly reversible, and the temperature is static for both the cold and hot reservoirs.
+
+A quick google search of the Carnot Engine will present you with this. I’ll try to explain it as I understand it and also the fallacy we hold about nature as Carnot observed it himself. t_H and t_L represent high temperature and low temperature. q_in and q_out represent heat absorption and heat release, also representing the hot and cold reservoirs. So this diagram becomes simpler than it looks with a little context that you now have. I will be referring to Diagrams A, B, C, D as dA, dB, and so on.
+
+Completely unrelated but still a fun, well tragic, fact. Carnot’s nephew, Marie François Sadi Carnot, became the president of France. Unfortunately he was assassinated by an Italian anarchist.
+
+There’s a fluid in the cylinder that pushes the piston up and down, it could be a liquid or a gas, we’ll just call it fuel even though that’s slightly inaccurate. The fuel is an unknown, but it doesn’t really matter, all we need to know is that it interacts with heat in way which makes it expand and compress. When the temperature is increased (t_H), it’s because heat is absorbed by the fuel from the hot reservoir (q_in) as shown in dA, the fuel expands in all directions which causes the piston to go up (dB).
+
+The piston moving up represents the conversion of heat into mechanical work, a metric that is used to gauge how much heat, or fuel, is converted into useful work. Now that the piston has gone up, it needs to come down to repeat the cycle. So heat gets released from the fuel using the cold reservoir (q_out) by lowering the temperature (t_L). This causes the fuel to compress again as shown in dD. Once the fuel is fully compressed, the process begins again from dA.
+
+One important thing to note is that dB and dD don’t use the hot or cold reservoirs to fluctuate their temperatures (t_H or t_L). As fuel absorbs heat, it gets energized in a way. The whole reason why something feels hot is that the particles of said thing are moving very fast. When particles are moving fast, or energized, they begin to counter the intermolecular forces that cause them to stick close to each other which makes them change states, this countering of forces is known as melting or boiling point.
+
+That is how metals turn to liquids in high temperatures, because the atoms are so energized, they begin to push away and become less dense. Allowing them to start taking the form of a liquid. That is also why liquids like water turn to gas at high temperatures.
+
+When atoms continue to spread apart, they no longer hold a state that can be held down by gravity or by the loose intermolecular forces still trying to hold the family of atoms together. So water, for example, begins to turn to vapor, a gas, and spread out into the world as something that becomes unseen (for a little while at least, they turn to clouds and come back down as rain, in the case of water vapor).
+
+In dB, as the fuel expands due to the heat from dA, it does work on the piston by moving it up but no extra heat from the hot reservoir (q_in), or any heat at all, is added in the process represented. The energized atoms that move the piston up are basically transferring their energy to the piston, causing it to move. But in transferring its energy, and thus heat, the fuel gradually loses temperature which prepares it for compression.
+
+Had heat from the hot reservoir been added during the dB process as well, the task of the cold reservoir (q_out) in bringing down the piston by absorbing the heat from the fuel would take a very long time. Without this balance, the piston would shoot up and get stuck at the top, waiting for the cold reservoir​ to slowly cool it down before it could drop — killing the smooth, fluid motion of the engine.
+
+The way the Carnot engine is set up, just enough heat is absorbed to do work. As the work is being done, the energy and heat of the fuel is naturally decreasing. With the cold reservoir kicking in, the fuel is prepared to compress as fast as possible, allowing the piston to come down to its original state fluidly and quickly. This makes the process reversible and very efficiently cyclical.
+
+The system seems very efficient indeed but there are various problems that prevent it from being fully efficient. To move the piston, fuel needs to be energized by heat. Once the fuel is energized, it begins expanding and pushing the piston up. The fuel’s energy becomes lower as it is transferred into useful work that moves the piston up. This is the efficient part we just discussed earlier.
+
+However, the nature of moving the piston up introduces friction. The piston will always have friction in an engine, whether that’s resistance from air, or resistance from other mechanical parts such as the piston itself or, as in a real engine, the crankshaft among numerous other parts.
+
+Furthermore, when fuel has enough energy to expand, it doesn’t necessarily mean that all atoms of this fuel will transfer their energy into moving the piston. The more energized an atom is, the more it moves around. As these energized atoms of the fuel are moving around, they hit other atoms. These atoms could be that of the cylinder walls that surround the piston. The cylinder walls are, of course, a solid with dense intermolecular structures. Due to this dense structure, the atoms of these walls are naturally not as energized as the fuel within them.
+
+Upon impact with a less energized atom, an energy transfer occurs. The more energized atom transfers some of its energy to the less energized atom bringing the system into equilibrium. The energy of “hot” atoms naturally change to a “cold”, or less energized, state through a universal energy transfer or distribution process with other atoms. This doesn’t mean energy is lost, it just means that it’s transferred.
+
+This insight would later lead to the creation of the Second Law of Thermodynamics. The law basically implies that energy transfer from hot to cold in closed systems like engines will always lead to a level of disorder or inefficiency because some, if not most, of the energy will not lead to useful work. It means that no engine that relies on heat is 100% efficient. Even the car you drive only uses 20-40% of the gas to move the wheels, the rest is sacrificed to nature. So you’re losing basically 60–80% of the gas you pay for but it’s inevitable by nature’s design.
+
+This concept became known as entropy, the thing that started this entire rabbit hole of researching for me. Entropy measures the amount of disorder that exists in a system. More than disorder, it measures how energy spreads out within a system, further allowing us to calculate how much disorder or useless energy can exist within the system.
+
+The example here being how fuel in Carnot’s engine faces friction, energy transfer to cylinder walls rather than to moving the piston, energized atoms that expand in directions other than upwards such as towards the cylinder walls, or any other form of disorder. Most of it being useless for pushing the piston upwards. So when we discussed 10 pieces of coal leading to only 1 mile of movement in the beginning, we can begin to understand why a shift from steam engines to, now, electric or diesel-electric engines occurred in the railway and automotive industry.
+
+Carnot and Clausius were only the first of many innovators to come. One of the most profound figures whom I wanted to delve into in this article was Ludwig Eduard Boltzmann, one of the earliest discoverers of atoms. Unfortunately, his work and findings were severely rejected by the scientific community of his time. The isolation and depression partly caused by such rejection led him to take his own life.
+
+A tragic end for such an intelligent being. Boltzmann’s discoveries were only realized in his last few years and really after he passed. Had he not succumbed to such a tragic fate, his name would have become just as synonymous with intelligence as is Einstein’s. That’s my personal belief.
+
+I’m only saying this because I wanted to discuss Boltzmann in a greater depth in this article but it is already starting to get too dense for my liking and I think it would be best to split it off into multiple parts. This being the first part and heavily on the non-mathematical side of Carnot and Clausius.
+
+If I do end up writing a second part and continuing this, I hope to get into the mathematical side of Carnot and Clausius and maybe even getting into Boltzmann’s discoveries in statistical mechanics, thermodynamics, and the quantum space.

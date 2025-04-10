@@ -1,0 +1,51 @@
+We’re often eager to dive straight into coding when starting a new project. However, rushing into implementation without proper validation can lead to significant challenges down the road.
+
+There’s a Japanese idiom “急がば回れ” (isogaba-maware) meaning “more haste, less speed.” This perfectly illustrates why rushing into development can be problematic:
+
+Unforeseen issues slows you(and your team) down
+
+If you don’t understand the nitty-gritty parts of what you are building, you(or your poor teammate) might have to spend a load of time figuring out what’s not working.
+
+If you are a tech lead or any other role that leads a project, I strongly recommend dedicating significant time to thoroughly testing new frameworks and tools before implementation. This hands-on exploration allows you to identify and solve potential roadblocks early, when solutions are less costly and disruptive to the team.
+
+Last-minute deal breaking Issues
+
+Let me share my story on this. I once had a situation where I had to reimplement the entire authentication system just before the production launch because the authentication tool we were using did not support using the same domain for multiple applications.
+
+This was extremely frustrating, but I could have avoided it if I had spent a little more time checking the setup as a part of PoC.
+
+Unpredictable requirements and risks
+
+Without a PoC, accurately estimating the project’s time, workload, and risk becomes nearly impossible. This uncertainty can lead to missed deadlines and exceeded budgets.
+
+Now that you understand the importance of a PoC, let’s explore how to create one. Here are my practices to make my Proof of Concept truly valuable:
+
+Set Clear, Focused Goals
+
+Define specific objectives for your PoC. What exactly are you trying to validate? For instance: “Verify that the chosen API can handle 1000 concurrent requests” or “Confirm that the authentication flow works across all target platforms.”
+
+Keep it Simple, S
+
+Don’t spend time on trivial things.
+
+Maintain a Template Project Library
+
+Create and maintain a collection of starter templates for different types of projects. This approach saves time and ensures consistency in your prototyping process. These are templates that I use for Node.js or CDK project.
+
+github.com
+
+github.com
+
+Document Everything!!
+
+This will really help you and your colleagues down the road
+
+Set time limit
+
+Keep in mind this is like an investment in your project… don’t spend too much time! It also helps you prevent scope creep.
+
+Welcome Early Feedback
+
+Share your PoC with colleagues and stakeholders as soon as possible. Fresh perspectives can reveal blind spots in your approach.
+
+PoC is also incredibly effective for convincing your team. Nothing says “trust me” like showing something that actually works. Skip the endless debates; just flash the PoC :)

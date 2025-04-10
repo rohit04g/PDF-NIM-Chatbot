@@ -1,0 +1,37 @@
+Picture a cup of cold water, left out overnight on your counter, ready for an experiment. Nothing super interesting going on. Think of this as equilibrium, or, analogously, as a boring old industry where no innovation occurs and prices are static and nothing much changes.
+
+Now imagine you heated up a metal rod and stuck it in the water. Let’s watch what happens:
+
+The heat from the rod dissipates into the cup. At first, this happens quickly, because the temperature differential is high. As the delta shrinks, so too does the speed of change. Eventually we return to a state of equilibrium, where the water and the rod have equal temperatures, albeit higher than that of the original cold cup.
+
+Businesses aren’t that different. If a cup of cold water is a static industry, the disruption of a sudden insight or innovation triggers a very similar effect.
+
+Take AI. Take the shock to the system when a hot rod called ChatGPT gets inserted into a field that has gone through decades of frigid “AI Winters”. Take the quick dispersion of energy and funding and talent that propagated through the rest of the tech world like the thermodynamic effects of the Heat Equation.
+
+Yet we’re still in the early days of the AI revolution and the impact it will have on the many cold cups of water with which it’s coming into contact (including education, which is what my team and I are focused on changing for the better). So what we’re seeing is the heat still rushing out of the rod.
+
+Better to take an example that’s farther along. After all, physicists don’t measure the results of their experiments part-way through.
+
+Consider each of the following industries, all “disrupted” within the last twenty years, and how quickly they all became commoditized. This equilibrium analogy is not meant to suggest there is a lack of innovation in these industries. On the contrary: more competition has spurred even more innovation. Yet in each of these cases, the fundamental technology that caused the initial disruption (the rod, in our analogy) rapidly lost its heat to its neighboring competitors. And now, you can drink water from any part of the cup and know you’re getting roughly the same thing.
+
+One might correctly point out that many of my disruptive examples weren’t the first to do what they did. That’s true. I’m not claiming that they were the first. Just that they were the hottest.
+
+(And as I’ve written about before, what matters isn’t whether you’re first, but whether people think you’re first.)
+
+Nor am I suggesting that the “rod” doesn’t persist as the most successful business in the long term. AWS is the largest cloud provider. Uber is still the largest ride sharing app. But regardless of market share, it’s hard to dispute that their core product offering is, for all intents and purposes, undifferentiated.
+
+(A quick aside. If you’re enjoying this article, and aren’t yet subscribed to my free newsletter, click here to get it in your inbox every week.)
+
+Let’s go back to the cup of cold water and the heated rod. We originally spoke of this system as a kind of black box. The rod had a temperature. The water had a temperature. The two evened out over time.
+
+But thermodynamics is not a black box. It’s actually an emergent statistical process. What we perceive as temperature doesn’t really exist; it’s a generalization. Temperature is the aggregate measurement of the intensity with which individual atoms bump into one another. So what we saw as temperature diffusion was in fact a gazillion atoms transferring their momentum, one at a time, over and over and over. If you zoomed in far enough, you’d see that each atom is bouncing around chaotically even after our heat experiment is run. It’s just moving with the same speed as its neighbors.
+
+So it goes with economics too. Economics is not a black box. It’s comprised of individuals with their own needs and wants, like atoms only aware of their local surroundings. We see the aggregate effects of that and label them in generalized, abstract, unreal things called supply and demand.
+
+Yet if you zoomed in far enough, you’d see that each person is bouncing around chaotically too, feeding off the momentum of their neighbors, blind to the overall state of the cup. A classic emergent phenomenon.
+
+I like looking at the world around us through all of these lenses. They’re perspectives we all intuitively understand, but about which we don’t often pause to reflect.
+
+This isn’t the first time I’ve written about heat equations. Several months ago, I wrote an article answering a timeless question once and for all: Which should you pour into the cup first, milk or coffee? If you haven’t yet read it, check it out here: Milk before or after coffee?
+
+Thanks for reading! If you enjoyed this article, and aren’t yet subscribed to my free newsletter, click here to get it in your inbox every week.

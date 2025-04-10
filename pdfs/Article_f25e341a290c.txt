@@ -1,0 +1,41 @@
+Django provides a built-in way to generate documentation for models, views, and admin panels. This feature, called the Django admin documentation generator, helps developers quickly understand the structure of a Django project, including available models, views, and URLs.
+
+In this tutorial, we will explore how to enable and use Django’s admin documentation generator in your project.
+
+Before proceeding, ensure you have the following:
+
+Django provides the django.contrib.admindocs package, which generates documentation for your admin panel.
+
+To enable it, follow these steps:
+
+Open your Django project’s settings.py file and ensure the following line is present in the INSTALLED_APPS list:
+
+Modify your project’s urls.py to include the admin documentation URLs:
+
+To generate documentation properly, ensure that docutils installed:
+
+Once everything is set up, start your Django development server:
+
+Now, open your browser and go to:
+
+You should see an automatically generated documentation page containing:
+
+You can enhance the documentation by adding docstrings to your models and views. Django automatically extracts these docstrings to display meaningful descriptions.
+
+These docstrings will now appear in the admin documentation.
+
+By default, Django restricts admin documentation to authenticated users with admin access. However, you can further customize access permissions.
+
+For example, you can modify the admin/doc URL pattern to add custom permissions:
+
+This ensures that only logged-in users can access the documentation.
+
+Django’s admin documentation generator is a powerful tool for developers to explore and document their projects efficiently. By enabling admindocs, adding meaningful docstrings, and securing access, you can leverage this feature to improve project maintainability and collaboration.
+
+If you’re building a Django project, consider enabling admin documentation to make your development process smoother!
+
+Thank you for reading. If you find something wrong or better ways to do it, let me know in the comments below.
+
+If you like the post, hit the 👏 button below so that others may find it useful. You can follow me on
+
+GitHub | daily.dev | LinkedIn | YouTube

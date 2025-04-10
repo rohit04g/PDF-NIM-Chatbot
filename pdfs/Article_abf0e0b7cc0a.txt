@@ -1,0 +1,81 @@
+As I promised last week, the first Playing to Win/Practitioner (PTW/PI) piece of Year V is a jointly-authored piece with Mikkel Krenchel. And as always, you can find all the previous PTW/PI here.
+
+As Thomas Kuhn admonished us, when application of the dominant theory turns up important anomalies that it can’t explain, it’s time to consider other theories. Network economics has been the dominant theory of winning in business for at least 40 years. But important anomalies, including TikTok and Hermès have arisen suggesting that we need a theory that goes beyond network economics, and its core premise that the key to winning is accumulating more customers or users than the competition. We call the theory the Cultural Dividend.
+
+Network Economics and Strategy
+
+The idea of network economics has been around for a long time. Theodore Vail, the initial President of Bell Telephone, is credited with being the first to describe what is now known as the network effect, in 1908. He argued that the more users on a telephone network, the more valuable the network is to each user — and hence to the owner of the network.
+
+The theory received a big boost in 1983 when the father of Ethernet and 3Com co-founder, Robert Metcalfe, gave the phenomenon the formal name of network effects. He argued that the cost of adding a user grows linearly — n — while the value of the network serving those users grows at n2, thus quantifying the value of network effects for the first time — what became known as network economics. This in turn became a prominent paradigm across industries, from telephone to rail to stock exchanges, to shopping malls and beyond.
+
+But it was among the tech enabled companies of the internet age, that network economics truly showed its value creation potential. Giants such as Amazon, Google and Facebook won races to amass the biggest networks, repeatedly demonstrating the awesome power of network economics by crushing smaller rivals with their giant n’s — resulting in heretofore unknown heights of n2.
+
+The Side Effects of Network Economics
+
+The relentless quest for greater n drove relentless focus on user acquisition, engagement and retention, and gave rise to innovative tactics designed to tap into human psychology. Companies sought new insights about how individuals ‘experience’ their products so they could optimize their web and mobile designs for engagement. The era of ‘growth hacking’ was born, with entire departments dedicated to user acquisition and engagement and developing features like infinite scrolls, autoplay, and personalized push notifications. Marketing budgets pivoted from traditional advertising to data-driven digital engagement strategies. A/B testing became ubiquitous, allowing companies to fine-tune every aspect of the user experience for maximum ‘stickiness.’
+
+As a result, for the past two decades, the preferred formula has been to use deep user understanding to acquire users at a faster rate than any competitor — designing features to match what users want — and then let network economics provide financial means to buy or destroy any competitor. Facebook is of course the very best example. It used its vast resources to buy Instagram and its significantly greater user base to replicate, at a lower cost-per-user, the most beloved features of Snapchat, to neutralize that threat.
+
+The TikTok Anomaly
+
+Network economics would declare that there is no way TikTok could be an existential threat to Meta in 2025. In 2017, Facebook had 10 times the worldwide users of TikTok and Instagram five times. In 2019, Facebook US users collectively spent 8 times the minutes on the platform as TikTok US users and Instagram users 3.6 times.
+
+Just as TikTok began gaining global traction in 2019, Instagram began testing Reels, a short form video offering modeled on TikTok’s. Facebook followed soon after in 2021, launching Facebook Reels meaning that Meta had two platforms with features largely similar to TikTok on much bigger networks.
+
+But by 2023, TikTok had closed the gap in worldwide users with Facebook to 2.5X and Instagram to 1.6X. And in the bellwether US market, TikTok passed Instagram in total minutes on the platform in 2022 and is projected to overcome the narrow 2024 deficit to Facebook in 2025.
+
+Though it ought to be more valuable to users, Meta wasn’t able to make a dent in TikTok’s rise. Despite its smaller feature set and smaller user base, the average TikTok user today spends a whopping 58 minutes a day on the platform, compared to only 26 for the average Facebook user. That is a pretty important anomaly for which network economics theory has no answer. All it can say is that it shouldn’t be happening. But it is.
+
+Beyond Network Economics
+
+A central characteristic of the dominant theory is the focus on the individual user and how to deliver on their needs. Those needs could have social aspects, like sharing photos easily with my extended family. And a network with many users should in theory make it easier to serve my needs, connecting me to more people, giving me more information. But the need is still that of an individual — me.
+
+The common narrative is that TikTok simply built a product so engaging and addictive to the individual that it was impossible to hold back. Indeed, TikTok perfected many growth hacking techniques, but most were initially invented by and long practiced at Meta. TikTok’s continuous scroll of short, punchy videos and ability to match users with content that precisely mirrored their interests gave users one dopamine hit after another. But network economics dictates that as soon as Facebook and Instagram built similar features, their superior network size would kick in and make them more attractive options.
+
+So why then couldn’t Meta parry the threat of TikTok as it did with Snapchat and so many other social media startups over the years? The answer lies in the strength (not size) of the cultures and communities TikTok nurtured on its platform.
+
+Former Ford CEO Jim Hackett (who was kind enough to review an early version of this piece) has a useful metaphor for our predisposition towards understanding individuals rather than groups and communities: pixel vs. portrait data. When we focus on counting individual pixels, we miss that the full portrait is not just the number of red, green, or blue dots in the frame, but also their position and relationship with each other.
+
+People don’t join networks, platforms, or customer groups based exclusively on the economic value of individual features offered to them. They join in significant part because they want to be part of something: a culture, community, a crowd, a conversation. The power of a network is not just its size but its ability to make us feel connected to each other — to feel like we belong. We gain purpose when we feel we are part of the portrait, per Hackett’s metaphor.
+
+The Cultural Dividend
+
+The genius of TikTok is that it doesn’t just ship features that serve the needs of individuals, it ships norms, moods, and tools that nourish groups and communities. TikTok succeeds because it nurtures a thriving ecosystem of creators and makes it easy to participate in myriad communities. One moment you’re in a stadium watching your favorite artist at a concert, the next you’re in an intimate living room watching a comedian tell stories, only to then land in a crowded kitchen where a home chef makes the latest #FoodTok trend. TikTok is a belonging machine that helps us connect with creators and feel part of crowds at scale.
+
+The value of TikTok — to users and to investors — isn’t just a set of product features and a large user base. It is also a specific set of vibrant cultures and communities on the platform. The equivalent on Facebook (and to some degree Instagram) have been slowly losing their potency. Despite all the feature similarities between Reels and TikTok, the experience of being on Reels is still nothing like TikTok.
+
+Just like an engine needs fuel to work, a network needs cultures to thrive. We call the value created by the culture of a community the “Cultural Dividend” and propose that we might update network economics equation such that the value of the network isn’t just n2 but rather c*n2 where c is the Cultural Dividend. TikTok might still have a smaller network engine than Facebook, but it has been running on much higher-octane fuel.
+
+Switching to Electric
+
+It might sound counterintuitive to say that TikTok is a belonging machine. How can an app known for keeping people glued to their phones watching short videos of strangers possibly be fueled by belonging? The truth is, it’s precisely because you’re disconnected from your actual network that it works so well. On TikTok, we are spectators who feel loosely connected to endless crowds and creators, rather than deeply connected to select peers.
+
+Therein also lies the limits to the rise of TikTok and the recipe for others to surpass them. TikTok’s belonging is primarily ephemeral — it is fandom and followership, more so than lasting friendship or formal group membership. As humans we need both but arguably lack the latter more. More and more people report not having any close friends. To date, no one has cracked how to use technology to predictably build deep stable relationships and communities at scale. Doing that, it seems would be the equivalent to switching from TikTok’s high octane gas engine, to electric — a different paradigm promising not only faster acceleration but a more sustainable future.
+
+The Invisible Value Driver
+
+The Cultural Dividend concept illuminates not only TikTok’s meteoric rise but also explains other phenomena in the business landscape. It sheds light on Twitter’s (now X’s) outsized influence on public discourse despite having a fraction of Facebook’s or Instagram’s user base. The platform’s high Cultural Dividend — stemming from its real-time nature and concentration of influential voices — amplifies its impact beyond mere user numbers.
+
+The Cultural Dividend doesn’t just apply to internet platforms, it is a central part of the value equation for companies across industries and explains. Take the outsized success of Hermès and its sky-high valuation, for example. Hermès’market capitalization is currently 37th in the world, three spots ahead of Samsung, a company with $220 billion in revenues versus Hermès’ $15 billion. Hermès’ market cap/revenue ratio is a monumental 17X, nearly double that of tech giants Apple (9X), Google (7X) and Meta (9X).
+
+Hermès goes to great lengths to nurture the norms, myths, and cultures surrounding its products, maximizing its Cultural Dividend. To get a new Birkin or Kelly bag, you need to score an appointment with the atelier at the flagship 24 Rue du Faubourg Saint-Honoré store in Paris. Displaying such a bag shows not just your resourcefulness, but your keen understanding of the world of luxury. Anybody with fashion chops will know how resourceful you must have been to get a Birkin or a Kelly, and how much you paid for it (a lot). That connects you to a community of in-the-know fashion aficionados who know the rules and conventions necessary to acquire a limited-supply Hermès bag.
+
+The Anatomy of the Cultural Dividend
+
+We propose that a company’s Cultural Dividend can be assessed along four dimensions of its network:
+
+1. People. Not all users are equal. It matters whether the users in your network are rich or poor, young or old, influencers or followers. The cultural and financial capital of your customers or users represents real value for your business, and not just because of their lifetime value as customers, but just as critically because of their value to other people in the network. Part of TikTok’s success stems from gaining early traction with young people and creators who drove the cultural conversation. At Hermès, the whole point of their scarcity strategy is to ensure that customers feel part of an exclusive club.
+
+2. Structure. It is not just the people on the network who matter, the structure of the network matters too. Power relationships, cohesion, subgroups, whether people know each other or not, and the dynamics between groups all play a role. Greater cohesion, tighter relationships, and smaller subgroups tend to generate more thriving communities and thus greater Cultural Dividend. Facebook struggles compared to TikTok because it has such a broad network, compared to TikTok’s cohesive network centered around young adults and creators. As a business, you can create the conditions for networks with a particular structure by building spaces and tools that connect and nurture groups and subgroups, without leaving anyone too constrained.
+
+3. Interactions. The norms, subcultures, and values of the network are crucial. Norms that encourage actions such as posting content or wearing a brand that provide value to other people are important. Meanwhile, negative norms such as posting highly toxic or divisive content can detract value from other people in the network and diminish Cultural Dividend. We’ve seen this play out positively with TikTok’s emphasis on creativity and trends and Hermès’ cultivation of exclusivity but negatively with Facebook’s struggle handling misinformation. As a business, you can help shape norms and values by consistently modeling desired behaviors and creating incentives for positive interactions.
+
+4. Conversations. The quality of the conversation can be vibrant or stagnant, toxic or hopeful, brand aligned or discordant. You can help steer it — even if you can rarely control it. More vibrant conversations that capture people’s imaginations and reinforce or elevate your brand are valuable and drive up the Cultural Dividend. If you can read the zeitgeist, tap into it, and amplify it, even better. This is what TikTok did by setting a tone where everyone can be a creator and where the everyday is the story. Hermès has done it again and again by pushing the boundaries of fashion, giving people something to talk about and understanding what kind of exclusivity to deliver to match the moment.
+
+Together, the flavor of people, structure, interactions and conversations of a network determines its Cultural Dividend — its ability to drive business value.
+
+Don’t Just Ship Products — Ship Cultures
+
+To grow your Cultural Dividend, start by looking at what you build and sell as more than a product or platform with a user base. The culture and communities that surround your products are a key asset — maybe even the key asset. Every time you ship new products, features, or ads you implicitly ship a set of norms and values as well. Understanding whether you are constructing new norms and values or tapping into a culture that already exists is essential in guiding your choices on how you then show up in that market. The signals you send for how groups and individuals should use your products can inspire and elevate.
+
+The Cultural Dividend is the hidden multiplier in the value creation equation. It’s time for companies to shift gears from serving individual users to nurturing collective experiences. Don’t just build networks — create digital habitats where communities thrive. To win in the modern landscape, leaders must become expert cultivators of group dynamics and shared meaning. It will require updating the strategy software that powers much of Silicon Valley and beyond. But it’s about time.

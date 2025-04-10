@@ -1,0 +1,27 @@
+You are a marketing data analyst at your organization and your marketing team decided that they will roll out a specific campaign for consumers who are spending more than 100 USD per week on your website. They call these customers as “loyal customers”. Now you have been tasked to present it to the leaders of the organization whether this campaign was worth it. Because your organization decided to not do A/B Testing, you are now going to use Regression Discontinuity Design arsenal from your Causal Inference Toolbox. Unfortunately, you do not know how!
+
+In this post, I am going to explain you step by step with the help of code and charts, how you can do an RDD analysis. I will first talk about what RDD is, why do we use it, why is it closest to the golden standard of Randomized Control Trials (RCTs), and how you can analyze the effects of treatments for effective marketing campaigns. If you are new to causal inference, you can read my previous article published on Towards Data Science here. Let’s go!
+
+According to World Bank, “Regression Discontinuity Design (RDD) is a quasi-experimental impact evaluation method used to evaluate programs that have a cutoff point determining who is eligible to participate. RDD allows researchers to compare the people immediately above and below the cutoff point to identify the impact of the program on a given outcome.” Let us break this definition apart.
+
+RDD estimates the local average treatment effects at the cutoff, where treated and comparison units are closest in similarity. It is assumed that a person spending 99 USD is similar to the person spending USD 101. The units on left and right are increasingly alike. The only difference is that if the customer spent 101 USD, they got a specialized marketing campaign, but if they did not, they didn’t get the specialized marketing campaing. For close limits, this can be approximated to a randomized control trial experiment. Therefore, RDD works with this logic. For more information, one can read the following article.
+
+For this tutorial, I am going to generate a dataset. With the help of this dataset, we will find out whether the marketing campaign was effective for our intervention.
+
+The next step is seeing the first discontinuity in how the consumers reacted to marketing campaign.
+
+The next step is to visualize the trendlines for treatment and control group. This can be achieved with the help of the following code.
+
+With a bandwidth of five, I use the ordinary least square method to fit the regression curve. The code below and the corresponding images show the output of that.
+
+This model is telling us that the future spending increases by 5.001 points when the consumers get the marketing campaign treatment. In other words, I can say that the marketing campaign increases the chance of more spending by 4.39%. Statistically, this is significant. But, if is significant business wise, this can be debated.
+
+Boxplot
+
+Cumulative Distribution of Future Spending
+
+Because RDD estimates local average treatment effects around the cutoff point, the estimate does not necessarily apply to units with scores further away from the cutoff point. Therefore, we need to know what we are trying to answer using this experiment.
+
+If the evaluation primarily seeks to answer whether the treatment should exist or not, then the RDD will not provide a definitive answer. However, if the question of interest is whether the treatment should be cut or expanded at the margin, then the RDD produces the local estimate of interest to inform this decision.
+
+Sources:

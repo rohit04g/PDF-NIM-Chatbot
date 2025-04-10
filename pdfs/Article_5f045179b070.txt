@@ -1,0 +1,55 @@
+This post does not reflect the views of current, past, or future employers. The opinions in this article are my own.
+
+Our second stop on the grand tour of affinity is CPU affinity, but before that it makes sense to take a little side trip to look at CPUs themselves.
+
+You’ve probably heard the expression “CPUs are the brains of computers”. It’s a pretty good analogy. The brain gets input from memory and the senses like vision and hearing, processes the input via neurons connected in a neural network, and outputs new memories or coordinated muscular movements (like I’m typing this article right now!). Similarly, a CPU gets input from RAM memory or external devices like a keyboard, processes the input via a sequence of “CPU instructions” implemented by electrical circuits, and writes output to memory or sends commands to external devices (like rendering characters on my screen). Of course the physiology of the human brain is quite different from the hardware design of a computer, but it is interesting that a lot of AI/ML is about emulating the processes of the brain like with neural networks.
+
+Similar to the study of the brain in neuroscience, there’s an alphabet soup of terminology associated with CPUs replete with several ambiguities — for instance, “tasks” and “threads” can be ambiguous, and even the term “CPU” can be ambiguous. Admittedly, the terminology can still trip me up, but I’ll try to navigate it today as best I can :-). So let’s talk CPUs!
+
+Here’s the textbook definition: A Central Processing Unit, or CPU, is the primary processor of a computer that executes instructions of a computer program. A processor is an electrical component (integrated circuit) that performs operations on an external data source, usually memory or some other data stream.
+
+Hardwired into a CPU’s circuitry is a set of basic operations it can perform, called an instruction set. Such operations may involve, for example, adding or subtracting two numbers, comparing two numbers, storing or loading data to or from memory, or jumping to a different part of a program. Each instruction is represented by a unique combination of bits, known as the machine language opcode.
+
+CPUs are made mostly of an element called silicon. Silicon is common in the earth’s crust and is a semiconductor. This means that depending on what materials you add to it, it can conduct electricity when a voltage is applied. Silicon is key to making transistors which are devices that control the flow of electrical current or voltage (essentially transistors are electrical switches). Transistors in turn are the building blocks of CPUs.
+
+CPUs are manufactured from a CPU wafer, or silicon wafer, that is a thin slice of highly pure silicon. The circuitry of transistors and wiring patterns are fabricated directly onto its surface during the manufacturing process. A single wafer contains many CPU dies that are cut from the wafer and each die is wired into a CPU package. The package can then be installed in a CPU socket on a motherboard. Transistors in a CPU are tiny. With current technology they can be as small as 5 nanometers, which gives 125 to 300 million transistors per square millimeter. A single CPU can have over a 100 billion transistors (Apple’s M2 Ultra chip holds the record at 134 billion).
+
+A CPU can contain one or more cores, where each CPU core is an individual processing unit within the CPU. There’s a little bit of fuzziness here in that we’re saying processing units contain processing units! One way to think about it is that a CPU usually refers to the package that plugs into a motherboard socket, and core refers to processor units within that thing. When there’s more than one core we call that multi-core which leads to terms like dual-core, quad-core, or N-core CPUs for some number N. Multi-core allows parallel processing which is a big performance boost. CPU cores primarily consist of execution units, control units, and memory.
+
+Execution units are circuits, constructed from logic gates, that perform the logic of instructions. The primary execution unit for integer arithmetic is called the ALU (Arithmetic-logic Unit). It’s also common to have a FPU (Floating Point Unit) for floating point arithmetic.
+
+The Control unit (CU) manages data, sends signals to hardware, and processes instructions. This includes logic to decode instructions, orchestrate CPU pipelines, handle out of order instruction execution, and do branch prediction (see below).
+
+Memory includes registers that are the direct input (operands) to CPU instructions. As we discussed last time, registers are at the top of the memory hierarchy pyramid. They are made from flip-flops which is the fastest but most expensive memory. The set of registers for a core is called the register file. Various execution units can have their own register file. For instance, we might refer to ALU registers as “integer registers” (or just “registers”). The FPU typically has a set of “floating point registers”.
+
+Each core has an L1 cache and may have an L2 cache as well. A load–store unit (LSU) is a specialized execution unit responsible for executing all load and store instructions, generating virtual addresses of load and store operations, and loading data from memory or storing it back to memory from registers.
+
+The primary function of a CPU core is to execute a program’s instructions. The basic architecture was conceived by Jon von Neumann in 1945 (we call this the von Neumann architecture). The hallmark of the von Neumann architecture is that instructions execute sequentially and execution of one instruction can be split into a number of stages; this is required because fetching instructions and data from memory they operate on must be done in different stages since they use the same memory bus.
+
+Most modern CPUs employ a variant of the von Neumann architecture. The number of stages used varies greatly depending on the complexity and performance requirements of the CPU, and the number of stages typically ranges from 5–20 stages in modern computers. The classic example is the five stage pipeline from RISC. The five stages are:
+
+Each of these steps is driven by its own control logic in gates that are the fundamental logic blocks of processors. The gates are driven by a “CPU instruction execution cycle clock”. This refers to the single pulse of a CPU’s internal clock that signals the completion of one step in the process of fetching, decoding, and executing a single instruction. Essentially, each clock cycle represents one phase within the full instruction execution cycle, and the speed of the clock directly impacts how quickly the CPU can process instructions. The clock speed, or clock frequency, is given in Hz and is typically in the range of 1GHz to 3GHz for today’s computers.
+
+Instruction pipelining is a common technique for implementing instruction-level parallelism within a single CPU core. Pipelining attempts to keep every part of the processor busy with some instruction by dividing incoming instructions into a series of sequential steps in stages (the eponymous “pipeline”) performed by different processor units with different parts of instructions processed in parallel.
+
+When everything is going perfectly and all the stages are kept busy then one instruction is completed every clock cycle. We say the Instructions Per Cycle, or IPC, is 1.0. If we want to know how many instructions per second a CPU executes we just need to multiply the IPC by the clock speed. For instance, if the IPC is 1.0 and the clock frequency is 2GHz for some CPU then 2 billion instructions can be executed per second.
+
+Of course, in real life not everything goes right all the time. Sometimes a pipeline stage will require more time to complete. The poster child for this is when an instruction performing a memory operation takes a cache miss. This creates a pipeline stall where the pipeline is blocked until the memory operation completes. The instruction that causes the cache miss, as well as following instructions, may be delayed for as long as it takes for the cache miss to be resolved. Pipeline stalls decrease the IPC so that it may be less than 1.0 and hence performance degrades with pipeline stalls. The figure below illustrates the effects of a pipeline stall.
+
+The first CPU was the Intel 4004 released in 1971, and in 1978 the Intel 8086 was released which was the basis for the first PCs. After that, things really took off. In fact, in 1965 Gordon Moore postulated what came to be known as Moore’s Law. The Law states that the number of transistors that can fit on a chip would double every one to two years. Effectively, this means that CPUs, and hence computers, could double in performance every two years. Moore’s Law has held true for more than fifty years, although some think that it has ended (eventually it must end because quantum uncertainty places a limit on how small we can make transistors).
+
+A corollary to Moore’s Law is that CPU clock speeds could double every two years. For a long time they did, however at about a 3GHz clock frequency the speed of light starts to be a bottleneck and heat becomes an issue. As shown in the graph below, we hit the clock speed barrier around 2002 and the industry shifted to making multi-core CPUs to keep up the pace of performance increases.
+
+There are many tricks and optimizations that CPU vendors use to continue upping performance. This gets into some really complex engineering, but the good news is they’re fundamentally based on the principles we’ve already outlined. I’ll mention a few of these optimizations.
+
+Improves performance by predicting which way a program will branch in the code, reducing processing overhead.
+
+Allows the CPU to execute instructions in a more efficient order than the original code sequence.
+
+Creates multiple logical cores per physical core, allowing simultaneous execution of multiple threads.
+
+Utilizes different levels of cache memory (L1, L2, L3) to store frequently accessed data for faster retrieval.
+
+The Instruction Set Architecture (ISA) can be augmented with instructions to perform complex, domain specific operations. These include:
+
+In a super-scalar core, or super-scalar processor, some of the stage units are replicated to increase instruction-level parallelism. In contrast to a scalar processor, which can execute at most one single instruction per clock cycle, a superscalar processor can execute or start executing more than one instruction during a clock cycle by simultaneously dispatching multiple instructions to different execution units on the processor. With a super-scalar architecture the IPC may be greater than 1.0 for increased performance.

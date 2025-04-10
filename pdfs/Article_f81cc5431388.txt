@@ -1,0 +1,67 @@
+In many cases, designing the footer is an afterthought, the last thing we do before finishing a layout. It is also common that we create a very creative hero section, then as we design the page section by section, the level of creativity decreases, and we end up with a very generic footer — and this is a missed opportunity, footers can add so much value to your designs!
+
+There is a myth about scrolling: “users don’t scroll”. This is wrong. Users do scroll, however, you need to signal that “there is more” (~teasing continuation).
+
+This is how users apply footers:
+
+A footer can have many roles, here are some of them:
+
+Consider adding these to your footer:
+
+Avoid creating unnecessarily cluttered footers! Ask the question: what is your context?
+
+Naturally, you should design your footer in a way that it serves your context. Here are some examples for types and contexts:
+
+Progressive disclosure is about gradually revealing information or features (showing things needed at a given point vs. everything all at once).
+
+Teasing continuation is a technique that helps us encourage users to continue (e.g. by using visual cues or text). That way, you can avoid creating a so-called false bottom. So you should suggest that users should scroll down.
+
+What to do in case of using infinite scroll (so that users can’t reach the footer):
+
+Footer reveal pattern example:
+
+Mini footer pattern example:
+
+You should also think about making it responsive: how to design your footer for the different viewport sizes.
+
+Adding animations and microinteractions can make your footer more effective (e.g. think about the branding and emotinal design aspects).
+
+One more piece of advice is that you should conduct research, e.g. you can apply a so-called scroll heatmap.
+
+You should end on a high note, and create a footer that’s memorable and adds real value to your design. Think about how you can best utilize this often neglected design pattern: what are the business goals? And the user goals?
+
+www.footer.design
+
+www.awwwards.com
+
+muz.li
+
+www.awwwards.com
+
+www.unsection.com
+
+designsystem.digital.gov
+
+hds.hel.fi
+
+If you like my sketches, buy me a coffee to support my work! Thanks, I really appreciate your encouragement! 🙏
+
+Check out the Sketching for UX Designers course on Udemy, use the coupon code SKETCHFORUX202501 to get 80% off! Click here to apply the code.
+
+You can subscribe to my Sketching for UX newsletter to get early access to my newest UX Knowledge Piece Sketch (and receive it directly to your inbox each month). I also share my favorite design and visual thinking links.
+
+Get my Sketching for UX Designers Workbook here for free (and you can choose to support me by paying a couple of dollars, I really appreciate your support!)
+
+You can also grab a copy of my 100-day Long UX Visual Library Building Challenge book (also on a pay-what-you-want basis).
+
+💬Please let me know what you think, I always appreciate you feedback!
+
+www.nngroup.com
+
+www.hotjar.com
+
+www.nngroup.com
+
+blog.hubspot.com
+
+www.smashingmagazine.com

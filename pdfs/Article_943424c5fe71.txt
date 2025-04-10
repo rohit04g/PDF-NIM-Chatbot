@@ -1,0 +1,65 @@
+I had a conversation last week with a client (MJ) about facilitation but while doing so, I realized that what we discussed was so generalizable that I decided to write a Playing to Win/Practitioner Insights (PTW/PI) piece on the broader subject, which (with a play on Clay Christensen’s Jobs to be Done) I call Jobs to be Assigned: Facilitating Strategy — and Getting Leverage. All previous PTW/PI can be found here.
+
+The Question
+
+The question from MJ — a relatively young guy — was how to facilitate a strategy session with a group of managers that might well be far senior to him? How could he present strategy work to them, steer a discussion amongst them, and cause them to see it as a productive expenditure of their time? I gave him lots of advice on the nuts and bolts of facilitation, which I won’t itemize here, but the central advice was to give each individual member and the group collectively a concrete, doable, and interesting job. If you don’t, they will make up a job that has those three attributes — and you are not going to like what they choose.
+
+I have written about this before in the context of the design of full-time jobs or projects. But it applies equally to designing any task, any interaction, any time.
+
+Getting Leverage
+
+But it all starts with the question of leverage. Like everyone else, you have a choice on how much leverage to seek in work and life.
+
+At one end of the spectrum, you can do all the work necessary to create a target output by yourself. That is, you can eschew getting leverage of any sort on your own labor. You can, for example, do surgery on yourself, or represent yourself in court, or (if you are a dude) refuse to stop to ask for driving directions, or write a book without an editor.
+
+However, in my observation, most successful people strive to get leverage on their work. They get leverage from superiors by way of advice from those with more experience. They get leverage from subordinates who augment the labor hours that they spend themselves. And they get leverage from others outside the chain of command who have some special expertise to contribute.
+
+There is a proverbial cornucopia of leverage out there to be tapped into on any task from tiny ones to huge ones.
+
+Assigning a Good Job
+
+However, there is a gating function on leverage, which is assigning a good job — whether that assignment is to someone who is more senior, at the same level, or more junior.
+
+The characteristics of any job that is assigned successfully is that it is concrete to the recipient, doable by the recipient, and interesting for the recipient.
+
+By this standard, it is just not OK to ask, ‘what do you think?’ That is typically what senior management does with boards. Management typically spends thousands of person-hours preparing presentations for the board — usually thick PowerPoint decks that have everything totally buttoned up — purportedly to seek its advice and perhaps its approval.
+
+That is not concrete. The board must guess what you want — what would be helpful versus unhelpful advice/thinking. The board won’t like being forced to guess about its job. It doesn’t know whether it is doable because it doesn’t know what the job truly is. And it isn’t an interesting job because the board suspects from lots of experience that what management really wants is to be congratulated on its terrific work. That is a boring and at least a little bit insulting job — nodding their collective heads like trained seals.
+
+When the job assigned is not concrete, doable, and interesting, the recipient makes up a different job that is more concrete, doable, and interesting — maybe not an awesome job, but a better one. For boards, the job it typically assigns to itself is to nitpick, find little faults, insist on further work, etc. And management is typically discouraged, disillusioned, and demotivated by the experience — and boards can feel it.
+
+The leverage is minimal for management and the board recognizes that too. The tragic member of management who facilitated the meeting — whether CEO or (say) CSO — is viewed as having done a terrible job of facilitating and the content is viewed as uninspiring. The singular driver of the negative outcome is a badly assigned job — not the content.
+
+However, the board can be assigned a great job, for example the following:
+
+We have been thinking about an important challenge for the company and have come to the preliminary conclusion that there are four major components on which we need to develop a point of view before we come to an overall conclusion and recommendation. We would like to lay out the challenge and the four components — and how we are thinking about them initially.
+
+And from your experience (individually and collectively), we would like your views on the extent to which those seem to be the four important components — or either if we are missing another major component or one of the four doesn’t deserve to be included.
+
+And for our preliminary points of view on each, how might you think differently and what further explorations would you suggest?
+
+That is a great job. You have been concrete in telling the members why you need/want the answer and what is the form of a helpful answer — i.e., you have told them what would be useful and why. You have made it doable by specifying that you just want their thoughts and advice based on their experience — not some magic perfect answer! And it is an interesting job. It is easy for them to see the value they can create, and it forces them to think hard and do real work. Management will get meaningful leverage out of this board.
+
+This is a job assignment to a more senior entity. However, the same rules apply to designing job assignments for more junior people/entities. Let’s say you want to give a team of your direct reports an assignment to explore a given market — let’s call it X. It is not going to get you lots of leverage to tell them: “Go do an analysis of the X market.”
+
+Make the assignment concrete by specifying why — I am trying to ascertain where we might fit in that market — and what by specifying the features that their output needs to include — e.g. I need to know the best estimates of future growth, any shifts in market shares recently, and the success, or lack thereof, of any new entry activity.
+
+Then, as with the board, you must design the assignment to be doable and interesting — which often are interrelated in assignments to junior people. If it is too easily doable, it won’t be sufficiently interesting. But if it is not doable, it doesn’t matter whether it is interesting because it won’t get done.
+
+For example, for someone who is ready, it may be doable and interesting to say: ‘Come back with a recommendation on whether we should enter market X, and if so, with what strategy.’ But for someone who is less ready, that might be undoable and scarily so. While the more ready subordinate may find the following so easily doable that it is not interesting, a less ready subordinate may find it doable and interesting: ‘Come back with three ideas on how we might enter market X if we thought that was a good idea.’ Toggle back and forth until you get an assignment that is doable and interesting, and you will get the maximum leverage. To adjust your job assignments to maximize doability, you can use a tool, The Responsibility Ladder, that I introduced earlier in this series.
+
+I get lots of pushback about assigning jobs to more senior people, such as your boss or the board. The critique is that they are the ones doing the assigning and you are the one on the receiving end. While there is certainly a grain of truth to that view, it is a view that will keep you junior because you won’t get valuable leverage from the more senior people in your orbit. That is a big miss because senior people don’t resent being given a good job — they love it! In a misguided attempt to act appropriately respectful as a junior, you will stay junior without holding yourself accountable for the behavior that resulted in you being mired there.
+
+Practitioner Insights
+
+If you want leverage in your life — and you should — you must become skilled at assigning jobs above, below, and across. The amount of leverage you get will be a function of how skilled you are at assigning jobs, which necessitates thinking about the three elements of a well-assigned job: concrete to the recipient, doable by the recipient, and interesting for the recipient. If you leave a job vague, recipients will make up something concrete. If you make it undoable, they will make up something doable. If you make it dull and boring, they will make it interesting. The revenge of those on the receiving end of a badly designed job is to design and do another job that includes these three elements for them. And I can promise you that they will give zero consideration to making that job provide valuable leverage for you.
+
+Spend time on thinking thoroughly about doability. It is tricky. A task that is doable for one person can be utterly undoable for another. Fortunately, you can get leverage from any level of job you assign. It is much better to adjust a job assignment down a notch in its potential leverage to you than it is to cause the recipient to reject the job — typically without informing you.
+
+There is a simple but underutilized tool that is always available to you in job assignment: asking! You can ask whether you have made the task doable. And if you ask genuinely, not in an ‘any fool should be able to do this task’ way, you will get help in assigning a doable job. Similarly, you can use the tool of asking to make the job concrete and interesting as well. Just ask, and tweak accordingly.
+
+This piece started with a question about strategy facilitation, and I will end with it. If you want to be a great strategy facilitator, you must go into every meeting with a view of the job you are assigning to the group as a whole and to every individual in the group. If you don’t, you are inviting unproductive behavior — that will be blamed on you. When a senior executive or board member ‘goes off,’ you may think the person was just having a bad day. But it is highly likely that it was your fault — for assigning a job, not purposefully but accidentally, that the person hated. And ‘going off’ was an integral part of the person’s redesigned job.
+
+To provide a concrete example, last summer I was asked by a client to sit in on a board meeting of one of its businesses. Before the meeting, I was warned that it was going to be fraught because one director, let’s call him Sam, was always totally obstreperous and impossible to control. Intrigued, I asked about his background and interests. I wasn’t the facilitator of the meeting — the CSO of the business was. But early on, I chimed in with a couple very specific questions for Sam that leveraged his background and interests, to which he responded helpfully and constructively. Having been given a concrete, doable and interesting job, (and smartly the CSO continued on this tack) he behaved wonderfully throughout the meeting and provided lots of helpful leverage to the CEO of the business. Everyone was amazed — they marveled at the appearance of a ‘brand-new Sam.’ No, he wasn’t ‘brand-new.’ It was just Sam with a good job, not a crappy one.
+
+How high you fly will be a function of the leverage from which you benefit. Don’t leave that completely to chance. Think about it. Design it for success.

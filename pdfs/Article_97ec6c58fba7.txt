@@ -1,0 +1,11 @@
+Need to validate image dimensions in your Laravel application? The dimensions validation rule provides a flexible way to ensure uploaded images meet your specific requirements.
+
+When handling image uploads, it’s crucial to validate dimensions to maintain consistency and performance in your application. Laravel’s dimension validation rule makes this process straightforward, whether you’re handling profile pictures, product images, or banner uploads.
+
+Let’s see how it works:
+
+Here’s how you might implement image validation in a content management system:
+
+The dimensions rule provides comprehensive control over image validation, ensuring your application handles images consistently. Think of it as a quality control system for your image uploads — it helps maintain visual consistency while preventing oversized or incorrectly proportioned images.
+
+If this guide was helpful to you, subscribe to my daily newsletter and give me a follow on X/Twitter and Bluesky. It helps a lot!

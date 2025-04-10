@@ -1,0 +1,201 @@
+In the past two years we doubled down on our investment in developer experience and performance — in every single release we’ve been consistently shipping improvements that multiply their impact when combined together. Seeing the positive community response and increased engagement in our developer events is validating that we’ve been moving in the right direction. Today’s release is bringing a series of improvements that will make it even easier for you to deliver fast web apps with confidence.
+
+A few highlights:
+
+You can watch a quick overview of the release from our special event video. For a more holistic list of the features and improvements in v19, continue reading below.
+
+Evolving Angular we see the opportunity to enable best performance practices out of the box, so that we can support your performance-sensitive use cases. In the past two years we kicked off a project to enable zoneless Angular, made server-side rendering an integral part of the Angular CLI, and worked closely with Chrome Aurora on hydration and the image directive.
+
+In version 19, we’re elevating Angular server-side rendering to another level with incremental hydration, server route configuration, event replay enabled by default, and more.
+
+Building large web apps increases the amount of JavaScript we ship to the user, which negatively impacts user experience. In v17 we made it trivial to lazily load code with deferrable views for client-side rendered apps. For server-side rendered applications we introduced full-app hydration which requires all the JavaScript associated with a given page to make it interactive. Today, we’re delivering a solution to the server that is inspired by deferrable views!
+
+Incremental hydration allows you to annotate parts of your template, using already familiar @defer syntax, instructing Angular to load and hydrate them on specific triggers, lazily.
+
+The demo above shows incremental hydration in action for a server-side rendered page. There are three visual effects that we’ve added to the demo app code to better illustrate what’s going on:
+
+Additionally, the demo app has an artificial delay of 500ms for each loading operation, so that we can easily explore different states.
+
+Notice that at the beginning everything besides the top bar is grayed out. This means that at this point we have not downloaded any of the JavaScript associated with the page. When the user engages with the filter component at the top left, Angular downloads it (visually indicated by pulsing), and after that hydrates it (demonstrated with the purple glow around the component).
+
+Later on, we continue interacting with the page and incrementally hydrate the rest of the components.
+
+Even without the artificial delay, Angular will download and hydrate the component asynchronously, which means that we have to replay the user event. For this functionality we’re using the event replay functionality we introduced in Angular version 18, which powers Google Search.
+
+When you update to Angular v19, you can try the new incremental hydration in any application that already uses SSR and full application hydration. In your client bootstrap, specify:
+
+To apply incremental hydration to a portion of your template use:
+
+When your app loads, Angular will not download and hydrate the shopping-cart component until it enters the viewport. You can read more about incremental hydration in the documentation.
+
+We’re grateful to everyone who shared their thoughts in the incremental hydration RFC and to our beta testers. Thank you for helping us improve Angular!
+
+A common problem in server-side rendered apps in any framework is the gap that occurs between a user event and the browser downloading and executing the code responsible for handling the event. We already touched on this in the incremental hydration section.
+
+Last May we shared the event dispatch library, which addresses this use case. Event dispatch captures events during initial page load and replays them when the code responsible for handling the events is available. Event dispatch is the same library that the Wiz team developed for Google Search and it has been battle tested by billions of users over the past ten years.
+
+You can enable event replay feature in Angular by configuring your hydration provider:
+
+The result will be similar to the visualization on the gif below. When the browser renders the app for the first time it hasn’t downloaded any JavaScript yet, which we visualize by using gray color for the UI. You can see that in the meantime the user clicks multiple times on the “Add to cart” button. In the background, event dispatch records all these events. When the JavaScript responsible for handling the click events loads, event dispatch replays the events which reflects in the number of items in the shopping cart:
+
+Over the past six months, we verified that this approach works really well with Angular. Today, we’re graduating event replay to stable and enabling it by default for all new applications that use server-side rendering!
+
+When you enable server-side rendering in your app, by default Angular will server-side render all the parametrized routes in your app and prerender all routes without parameters.
+
+In v19, we provide a new interface called ServerRoute which allows you to configure whether the individual routes should be server-side rendered, prerendered, or rendered on the client side:
+
+In the example above we specify that we want Angular to render the login route on the server, the dashboard route on the client, and to prerender all other routes. The server route config is a new configuration file, but it composes your existing route declarations with globs, so you don’t have to duplicate any routes.
+
+In the past, there was no ergonomic way to resolve route parameters at prerender time. With the server route configuration this is now seamless:
+
+Since Angular executes getPrerenderPaths in an injection context, you can use inject to reuse your business logic in the parameter resolution.
+
+This feature is now in developer preview! You can read more about route-level render modes in our documentation.
+
+In v18 we introduced experimental support for zoneless which allows Angular to function without having a dependency on zone.js. Historically, zone.js has been a critical component in Angular’s server-side rendering story, notifying the serving stack when the framework has completed rendering and the markup of the page is ready.
+
+We identified that the main reasons to wait for apps are pending requests and navigation. We introduced a primitive that we use in the Angular HttpClient and the Router to delay sending the page to the user until the app is ready. You can experiment with both of these packages and zoneless in v19 today!
+
+In addition to this, we provide a RxJS operator which enables you to notify the serving stack that Angular is still not done rendering:
+
+When the subscription emits a new value, we’ll make the app stable and the serving stack will pass the rendered markup to the client.
+
+We’ve been deeply focused on enabling you to build fast apps from the start. Just as important we see making sure you develop these apps efficiently. Today we have a few exciting improvements that we can’t wait to share with you!
+
+Angular v19 supports hot module replacement (HMR) for styles out of the box and enables experimental support for template HMR behind a flag!
+
+Prior to this improvement, every time you change the style or template of a component and save the file, Angular CLI would rebuild your app and send a notification to the browser which would refresh.
+
+Our new HMR will compile the style or template you modified, send the result to the browser, and patch your app without a page refresh and any state loss. That way you’ll have a faster turnaround cycle and uninterrupted flow state.
+
+Hot module replacement for styles is enabled by default in v19! To try HMR for templates use:
+
+To disable this feature specify "hmr": false as a development server option, or alternatively use:
+
+We introduced standalone components over two years ago in v14. In the last developer survey over 90% of developers said they are using this feature. As part of v19 we are providing a schematic that will run as part of ng update and will automatically remove the standalone component metadata property for all your standalone directives, components, and pipes and set standalone to false for all non-standalone abstractions.
+
+For more information, check our update guide on update.angular.dev. Thanks Matthieu Riegler for this contribution!
+
+To help you enforce modern APIs in your project, we developed a compiler flag that will throw an error if it discovers a component, directive, or a pipe that is not standalone. To enable it in your projects configure tsconfig.json:
+
+Since we introduced experimental Jest and Web Test Runner support in the Angular CLI, we continued evaluating the space and gathering feedback from developers.
+
+In the unit testing space, we believe in real browser testing to ensure we have the same environment across testing and production. To support developers to move to the new esbuild-based builder, in v19 we are introducing developer preview support for Karma to use the application builder by setting the builderMode option. This improves build times for unit tests and allows users to more easily leverage application builder-specific features like file loaders without breaking tests.
+
+With Karma being deprecated, in the first half of 2025 we’ll continue evaluating the existing test runners to pick our default recommendation that we’ll move forward with. Follow our blog and X for announcements and surveys.
+
+We collaborated with the security team at Google on a developer preview feature for automatic generation of a hash-based Strict Content Security Policy based on scripts in index.html.
+
+Using hash-based CSP, the browser will add the hash of every inline script to the CSP. Each script will have a unique hash associated with it. That will prevent an attacker from running a malicious script on your page because for the browser to execute the script, its hash needs to be present in the CSP.
+
+Currently, autoCSP is available in developer preview as an opt-in. To use it in your apps, configure the application builder by setting the autoCSP property to true under security within your project in angular.json.
+
+A core theme for Angular over the past two years has been evolving our reactivity system. In version 19, we’re excited to share a couple of new complimentary APIs and the stabilization of some of the fundamental reactivity APIs we introduced in previous versions, such as input, output, and view queries.
+
+Over the past year, we observed how developers are using the new input, output, and view query APIs and we’re graduating them to stable! To simplify the adoption of these new APIs, we developed schematics that will transform your existing inputs, outputs, and view queries:
+
+Note that signal inputs are read-only in contrast to traditional inputs, so you may need to migrate parts of your application manually if you’re setting input values.
+
+To run all these migrations at once, you can use the joint alias:
+
+You can read more about inputs, outputs, and view queries in our documentation.
+
+To make it frictionless for you to update your code to the latest APIs, we introduced an integration between schematics and Angular’s language service.
+
+When you update the Angular language service and your project to v19, you can directly update your inputs, queries, and more to the latest APIs directly from your code editor!
+
+In developer feedback as well as observing how applications in the wild use Angular signals, we saw an opportunity to better serve a common use case with a new primitive. Often in UIs, there’s a need for mutable state that still tracks some higher level state. For example, a selection UI has a “current selection” state which changes as the user makes selections, but also needs to reset if the list of options changes. The new linkedSignal primitive creates a writable signal which captures this type of dependency:
+
+linkedSignal clearly expresses the relationship between options and choice without resorting to an effect usage. The new API has 2 forms: a simplified (presented here) and an advanced one where a developer has access to previous values of options and choice. It also has an advanced API which allows for more complex logic such as maintaining the user’s choice as long as it exists in the new list of options.
+
+This new API is experimental, so please give it a try and let us know what you think!
+
+So far, signals in Angular have focused on synchronous data: storing state in signals, computed values, inputs, queries, etc. In Angular v19, we’re taking our first steps towards integrating signals with asynchronous operations by introducing a new experimental resource() API. A resource is an asynchronous dependency that participates in the signal graph. You can think of a resource as having three parts:
+
+1. A request function, which expresses the exact request to be made in terms of signals. For example, a user resource might compute a request that depends on a user ID parameter in the current route.
+
+2. A loader, which performs an asynchronous operation when the request changes, and ultimately returns a new value.
+
+3. The resulting Resource instance, which exposes signals that communicate both the value (when available) as well as the current status of the resource (loading, resolved, errored, etc).
+
+We’re offering resource() as an independent, experimental API today in order to test the APIs and gain early feedback from developers. Over time, we expect to gradually incorporate support for resources more deeply into Angular (for example, into the router as a form of resolver) as a key part of the async story in applications.
+
+Because many Angular applications today use RxJS for data fetching, we’ve also added rxResource to @angular/core/rxjs-interop which creates a resource from an Observable-based loader.
+
+For the past couple of versions we’ve been keeping effect in developer preview to observe how developers have been using them. Based on your feedback, prior to v19, we introduced a change in the timing of effect to better serve your use cases. You can read more about the change and our process evolving the API on our blog.
+
+As a core primitive in the new reactivity APIs, we’d want to take our time and make sure to get effect’s semantics right. We’ll keep this API in developer preview to open the door for changes if we discover use cases we haven’t taken into consideration yet.
+
+Six months ago we introduced experimental zoneless support to Angular. Since then, we’ve been iterating over the APIs and enhancing them — adding support for server-side rendering and improving the testing experience. We also partnered with the Google Fonts team to make their application zoneless and evaluate the developer experience. The results and the ease of the transition to zoneless exceeded our expectations, but there are still a few more polishing touches we want to put in place before moving this API to developer preview.
+
+In 2025 we’ll continue improving zoneless. In the meantime, make sure you give it a try in your app bootstrap and let us know what’s your experience with it! The easiest way to create a zoneless project is using the Angular CLI:
+
+Thanks to Angelo Parziale for this community contribution!
+
+In existing applications you can use the experimental zoneless provider:
+
+Next, make sure you remove zone.js from the polyfills section of your angular.json.
+
+Earlier this year we shipped Material 3 as stable, which makes our material components more customizable with a powerful Sass theming API powered by design tokens. In v19 we’re introducing enhancements to the theming API by making it easier to customize your components!
+
+With Material 3 we enabled you to create custom themes using component-specific mixins:
+
+With this highly customizable API, you often end up duplicating code for your individual components. To simplify the creation of custom themes, in v19 we enabled a more expressive API that allows you to declare a custom theme using a single mixin — mat.theme:
+
+To customize the styles of individual components you can use the new override API we provide in Sass:
+
+The snippet above will override the content background and content divider colors to purple and orange respectively, while preserving the original values for the remaining design tokens respecting your configured app theme.
+
+Making Angular CDK more powerful, we developed support for two-dimensional drag & drop in the CDK which was quite a popular feature request with 311 👍 on GitHub.
+
+Here’s a quick snippet of how you can use this functionality of the CDK:
+
+And the result will be something like:
+
+Find out more in the documentation.
+
+Another feature request we shipped recently is support for tab reordering with the Angular CDK (24 👍). Using this functionality you can easily make tabs draggable, which the Google Cloud Console team immediately landed in BigQuery via Angular and the CDK:
+
+One of the most popular feature requests, with more than 1.3k 👍 on GitHub, has been a time picker component for Angular Material. We didn’t immediately implement it because there was no strict spec for it, but given the demand we created a design which aligns with your requirements and accessibility standards and shipped it in v19!
+
+You can use it in your Angular apps today! Find more in the documentation.
+
+Together with the major improvements we shipped across our main themes: performance, reactivity, developer experience, and standalone, we also have a slew of quality of life improvements that make it even more enjoyable to build Angular apps!
+
+Reporting unused imports in standalone components has been one of the most requested features with over 150 👍!
+
+Starting in v19, Angular CLI will report a warning for your unused imports, similar to the gif below:
+
+Additionally, the Angular language service will highlight such unused imports and provide the functionality to auto remove them directly in your IDE or text editor.
+
+To suppress this check, you can update your angular.json:
+
+The most highly requested feature in the Angular CLI repository with over 350 👍 is enabling the ability to pass environment variables during build time.
+
+Starting v19, you can use the --define flag to achieve this:
+
+Over the years we got hundreds of feature requests to introduce syntax for local variable declaration (443 👍) in the templates. For many years, unfortunately, we didn’t have the optimal syntactical construct to do that.
+
+With the new block syntax for the built-in control flow and deferrable views we designed a solution which meets developers needs for local template variable declaration. We shipped this feature in developer preview as part of Angular v18.1. After observing how developers are using this new syntax, we’re now graduating it to stable!
+
+It works elegantly with template references and with the async pipe:
+
+It’s one of our core values to evolve your apps together with Angular and the Web platform. To ensure your apps are using latest APIs and best practices, we shipped multiple improvements:
+
+We, as developers, are building a product specifically for other developers like you. We wouldn’t be here without the incredible support and contributions of the Angular community. Each of you plays a vital role in shaping Angular’s future.
+
+Your feedback, open-source packages, and active participation in meetups and conferences help us make Angular better every day. The knowledge you share on platforms like StackOverflow, Discord, Reddit, Telegram and others empowers developers worldwide.
+
+We invite you to join this vibrant community, online or locally. This year alone, ten Angular conferences were held across the globe, from Belgium, Germany, India, Israel, Italy, Kenya, Macedonia, Poland, Serbia, USA. These events are fantastic opportunities to connect with fellow developers, learn about the latest advancements, and share your expertise.
+
+If you’ve organized an Angular conference that’s not on our list, please let us know at devrel@angular.io so we can spread the word.
+
+We’d also like to thank all the 247 contributors between our last two major releases who helped us shape v19.
+
+Let’s continue to learn, grow, and build amazing things with Angular!
+
+Over the past year we worked hard on all the features we shipped as part of this release. We also connected with hundreds of developers to collect your feedback and understand how we can best support you in 2025. We’re in the process of going through our notes and the results of our developer satisfaction survey to validate our assumptions.
+
+A couple of core themes that keep occurring again and again are around modernizing Angular’s authoring experience and rethinking our unit testing recommendations. We’re planning to do a thorough research in this space early next year and share our findings with you to collect feedback before making any decisions. In the meantime, we’ll continue putting polishing touches on our reactivity APIs, bringing incremental DX improvements across the board and evolving Angular’s performance to enable you to build web apps with confidence!
+
+Thank you for helping us shape Angular and onward to 2025! 🚀

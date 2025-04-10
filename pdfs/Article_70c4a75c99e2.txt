@@ -1,0 +1,27 @@
+AbortController is a JavaScript interface that allows you to cancel one or more DOM requests (like Fetch API calls) as and when needed. It provides a way to abort fetch requests.
+
+Imagine you’re building a search feature for an e-commerce app. Every time a user types a letter (like “w”, then “wi”, then “wir”…), your app sends a new Fetch request. If the user types fast, older requests might resolve after newer ones, causing outdated results to flicker on the screen. Worse, if they leave the page mid-fetch, React might try to update a component that’s already gone, leading to errors.
+
+By using AbortController, you can cancel pending Fetch requests, ensuring that your application remains efficient.
+
+Now, let’s see how to use AbortController with React .
+
+Step 1: Create an AbortController
+
+The signal property is an AbortSignal object that can be passed to the Fetch API to associate it with the controller.
+
+Step 2: Pass the Signal to Fetch
+
+Next, you pass the signal to the fetch function as part of the options object.
+
+Step 3: Abort the Fetch Request
+
+To abort the fetch request, you call the abort method on the AbortController instance.
+
+Let’s create a React component for searching products. We’ll use AbortController to cancel outdated searches.
+
+Breaking It Down 🔍
+
+Using AbortController with the Fetch API in ReactJS is a powerful way to manage and cancel fetch requests. It helps in making your application more efficient and responsive by avoiding unnecessary network requests and potential memory leaks.
+
+Happy coding!

@@ -1,0 +1,19 @@
+Curious about the future of JavaScript? Let’s explore the latest trends that are set to shape web development. At Webix, our expertise gives us the confidence to make reliable tech forecasts — no crystal ball needed.
+
+In this article, we explore the evolving JavaScript technologies that are sure to become an integral part of its ecosystem in the coming year, further strengthening the language.
+
+Webix engineers are strong advocates of JavaScript. This core web technology helps them create and refine Webix widgets, offering a wide variety of modern tools. And we are certainly not alone in this professional passion.
+
+According to the TIOBE Programming Community index, which reflects the popularity of programming languages, JavaScript ranked sixth in December 2024, gaining 1.72% compared to December 2023. This is the highest position for JS in the ranking since 2001.
+
+Additionally, JavaScript remains the most popular technology according to the 2024 Developer Survey conducted by Stack Overflow, maintaining its leading position since their first survey.
+
+The popularity of JavaScript drives the rapid development of its ecosystem, leading to the emergence and expansion of modern JS-based solutions. Let’s see which of them were highlighted by Webix software engineers.
+
+TypeScript continues to strengthen its position and gain popularity within the developer community. According to Stack Overflow, it currently ranks fifth among the most popular programming technologies: 38.5% of respondents indicated that they heavily use it on a regular basis and plan to work with it in the near future. We are confident that this upward trend for TypeScript will continue.
+
+But what makes it so popular? TypeScript adds an additional syntactic layer on top of JavaScript, allowing developers to use data types. Why is this so important? It enables better control over data types within the code and makes it easier to identify errors that occur when they are used incorrectly. TypeScript checks types during compilation, reducing the number of potential bugs at runtime. As a result, developers find it easier to create scalable and maintainable applications.
+
+React, Angular, and Vue will remain leaders among JavaScript frameworks in 2025, but Svelte is quickly gaining ground. Known for its lightweight and fast applications, Svelte compiles code into highly optimized JavaScript, offering better performance, a simpler learning curve, and lower memory usage. Since the release of Svelte 5 in October 2024, its ecosystem continues to grow, making it a strong contender for future web development.
+
+Read the full article about JS Trends in 2025 in our blog and stay up to date with the latest JS development news.

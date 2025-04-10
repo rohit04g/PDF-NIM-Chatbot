@@ -1,0 +1,49 @@
+After 15 years of web development, I’ve come to a shocking realization: React, the darling of modern web development, is nothing more than `document.createElement()` wrapped in excellent marketing and increasingly complex abstractions. And I’m going to prove it.
+
+Let’s start with a simple example. Here’s how we create a heading in vanilla JavaScript:
+
+And here’s the “modern” React way:
+
+“But wait!” I hear you cry, “React gives us reusable components!” Yes, and here’s the vanilla equivalent:
+
+But it gets better. Let’s look at a real-world React component I recently encountered in a “modern” codebase:
+
+All of this… to render an `<h1>` tag. This isn’t component reuse; this is abstraction for abstraction’s sake. We’ve gone from simple DOM manipulation to a matryoshka of components, each one adding its own layer of complexity, bundle size, and potential points of failure.
+
+Ah yes, the Virtual DOM — React’s crown jewel. It’s presented as a revolutionary performance optimization, but let’s be honest: it’s solving a problem we created by making the component model so complex in the first place. We’re essentially saying “Here’s a solution to the performance problems caused by our solution to problems that mostly existed in our heads.”
+
+To really drive this home, let’s look at what happens when we add TypeScript to the mix:
+
+All of this… to render an HTML element with some text in it.
+
+And while we’re here, let’s talk about Tailwind — because apparently writing CSS classes was too hard, so now we write inline styles pretending to be CSS classes:
+
+Remember when we criticized inline styles? Well, now we just made them longer and called it a framework. Instead of:
+
+We get a single-line CSS crime that stretches past the right margin of every monitor manufactured since 1995. But hey, at least we’re not writing CSS anymore! We’re just writing… longer CSS… inline… with more keystrokes.
+
+This complexity comes with real costs:- Larger bundle sizes- More complex build pipelines- Higher cognitive overhead- More points of failure- Harder onboarding for new developers- Dependencies upon dependencies upon dependencies
+
+The real question is: why do we accept this? The answer lies in a perfect storm of:- Framework marketing- Resume-driven development- Cargo cult programming- The mistaken belief that more abstraction always equals better code
+
+Here’s my radical suggestion: maybe, just maybe, we don’t need to wrap every HTML element in three layers of components. Maybe `document.createElement()` isn’t the enemy. Maybe the DOM isn’t something we need to pretend doesn’t exist.
+
+I can already hear the responses:- “But what about state management?”- “What about component lifecycle?”- “How will I handle complex UI updates?”
+
+To which I respond: how did we manage to build complex web applications for decades before React? Did we just imagine all those web apps from the 2000s and early 2010s?
+
+Speaking of abstractions hiding reality, let’s talk about where you probably found this article. Medium has become a wasteland of AI-generated articles reposted under different headlines, each one promising to reveal the “10 SECRETS of React Performance” or “5 PATTERNS Every Senior Developer MUST Know.”
+
+It’s the same shallow content, regurgitated through different titles, each one optimized for maximum engagement while saying nothing new. Just like our Typography component wrapping basic HTML in layers of abstraction, these articles wrap the same recycled thoughts in layers of clickbait.
+
+The irony of using AI to write this criticism isn’t lost on me. But at least I’m being honest about the fact that your insurance premiums are paying for this content.
+
+React isn’t bad. It solved real problems and introduced some genuinely useful patterns. But somewhere along the way, we lost the plot. We started treating simple DOM manipulation as if it was something to be avoided at all costs, leading to increasingly byzantine abstractions that solve imaginary problems while creating real ones.
+
+The next time you reach for a component abstraction, ask yourself: am I really making this better, or am I just wrapping `document.createElement()` in a fancy bow?
+
+*[Author’s Note: My house is already on fire from the rage-replies, but my insurance agent says I need more evidence of premeditation. Please share this article widely.]*
+
+— -
+
+*About the Author: A Senior Staff Principal Distinguished Architect Code Whisperer with 15 years of experience making DOM elements appear on screens, one way or another.*

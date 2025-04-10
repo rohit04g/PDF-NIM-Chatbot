@@ -1,0 +1,91 @@
+Understanding social collapse through the lens of information entropy reveals why our institutions are increasingly fragile—and what we can do about it. This is an experiment to see how well we can think together with artificial intelligence.
+
+When a nuclear power plant operates normally, it's a marvel of ordered information managing massive energy. Every gauge, procedure, and protocol works together to harness tremendous power safely. But if that information order degrades—if sensors fail, procedures break down, or communications fracture—the same energy that was productive becomes catastrophically destructive. This principle—that highly ordered information systems can manage enormous energy flows, but only if they maintain their information integrity—offers a powerful lens for understanding our current social crises.
+
+Our social systems—democracies, markets, media—are highly ordered information systems managing enormous social energy. Like nuclear plants, they require constant maintenance of their information order to function safely and effectively. When this order breaks down, the energy they normally manage productively can become destructive.
+
+This isn't just metaphorical. Information theory tells us that ordered systems require less energy to maintain than disordered ones. When information becomes corrupted or chaotic, systems must expend more energy to maintain the same level of function. Eventually, if disorder increases enough, the energy required to maintain stability exceeds the system's capacity, leading to collapse.
+
+Consider three critical systems currently under stress: financial markets, democratic institutions, and social media platforms. Each demonstrates how information disorder can threaten system stability, and each offers lessons for understanding and addressing our broader information crisis.
+
+The 2008 financial crisis provides a stark example of how information disorder can trigger system collapse. Markets are information systems that process the economic energy of millions of transactions. They function by maintaining ordered information about prices, risks, and values. When mortgage-backed securities became too complex to understand, when ratings became unreliable, when risk became opaque, the market's information order broke down.
+
+The energy that usually powers economic growth instead fueled a collapse. But what's less understood is how this process accelerated. As information disorder increased, market participants had to expend more energy (resources, time, attention) to maintain normal operations. This increased energy cost made the system more fragile, leading to further disorder in a devastating feedback loop.
+
+We’re seeing similar patterns today in cryptocurrency markets. While blockchain technology promises perfect information order through distributed ledgers, the broader crypto ecosystem suffers from severe information disorder: market manipulation, opaque trading practices, and complicated financial instruments that few understand. The result is a system that requires enormous energy to maintain stability—energy that could be better spent on productive, legal economic activity.
+
+The January 6th insurrection demonstrates how information disorder can threaten even seemingly stable democratic systems. Elections are high-energy information systems that process the political will of millions through highly ordered channels. When that order was disrupted by waves of misinformation about electoral fraud, the system's energy didn't disappear—it transformed into destructive chaos.
+
+But the problem goes deeper than just electoral integrity. Democratic discourse itself is an information system that processes the social energy of political disagreement into productive policy decisions. When this discourse becomes disordered through polarization, conspiracy theories, and algorithmic echo chambers, the energy cost of maintaining democratic stability increases dramatically.
+
+Consider how much energy (in terms of attention, resources, and institutional effort) now goes into simply maintaining basic facts about election results, public health measures, or climate science. This is energy that could be spent addressing actual policy challenges. Instead, it's consumed by the increasing entropy of our political information system.
+
+Social media platforms exemplify this dynamic at scale. They're designed to be high-energy information systems, processing billions of interactions daily. But without robust information order—fact-checking, verified sources, consistent moderation—they become entropy generators, making it increasingly difficult for other social systems to maintain stability.
+
+The COVID-19 pandemic illustrated this dramatically. A single piece of misinformation about vaccines could cascade through social networks, disrupting public health responses across multiple countries. The energy that usually powers public health information systems instead fueled vaccine hesitancy and resistance to public health measures.
+
+What makes social media particularly dangerous is its ability to amplify information disorder across multiple systems simultaneously. A viral conspiracy theory might start in social media, disrupt political discourse, influence market behavior, and undermine public institutions—all while requiring these systems to expend more energy maintaining basic functionality.
+
+What makes this crisis particularly dangerous is that maintaining information order requires energy—effort, resources, attention. As misinformation increases entropy in our systems, they require more and more energy to maintain order. It's a vicious cycle: disorder increases energy costs, which makes maintaining order harder, which leads to more disorder.
+
+This explains why fact-checking alone isn't enough. It's trying to solve an energy problem with more information. Instead, we need to think about how to restore and maintain information order at a systemic level.
+
+Some systems are already adapting. Finland’s educational system, for instance, builds information resilience by teaching critical thinking from an early age. It’s a high initial energy investment that reduces the energy needed to maintain information order later. This is a key idea that should be infused in policy for education at all levels.
+
+Taiwan’s rapid response to misinformation—what they call "humor over rumor"—shows how quick, accurate information can prevent disorder from taking hold, all with a touch of humor. It’s like having well-maintained safety systems in a nuclear plant designed by John Cleese of Monty Python fame: The energy invested in prevention reduces the risk of catastrophic failure. Using humor taps directly in humans inbuilt risk systems and opens them up to understanding and learning.
+
+We need to start thinking about information disorder as a national security issue. Just as we invest in physical infrastructure to prevent system failures, we need to invest in information infrastructure to maintain social stability.
+
+This means:
+
+1. Building resilient information systems with multiple layers of verification and redundancy2. Investing in education to create a population more resistant to information disorder3. Developing early warning systems for detecting and responding to information attacks4. Creating international frameworks for maintaining information order, similar to nuclear non-proliferation treaties
+
+AI presents both threats and opportunities in this context. On one hand, AI can generate and amplify information disorder at unprecedented scales. Deep fakes, automated disinformation campaigns, and AI-generated content can increase system entropy faster than human-scale responses can handle.
+
+On the other hand, AI, In the hands of humans, could help maintain information order by:- Detecting and countering disinformation in real-time- Processing and verifying information more efficiently- Helping humans navigate complex information landscapes within their span of understanding and education levels- Reducing the energy cost of maintaining information order as equilibrium states are achieved
+
+There are opportunities for automated enforcement and collection information to be put in front of the courts as social norms are broken by bad actors. In some cases small fines will be delivered along with restrictions from using social media, and other cases that involve harm, requisite penalties will have to be enforced, which could include lifetime bans, material massive fines, and incarceration. They’re both civil and criminal issues here.
+
+The key will be ensuring that AI systems themselves maintain high information order and are designed to reduce rather than increase system entropy.
+
+As our social systems process ever-larger amounts of energy—more data, more transactions, more interactions—maintaining information order becomes increasingly crucial. We need to understand that information disorder isn't just about false facts; it's about system stability.
+
+This means:
+
+1. Recognizing that information disorder is an energy problem as much as an information problem2. Understanding that system stability depends on maintaining information order3. Investing in reducing the energy cost of maintaining truth4. Building systems that are resilient to information attacks5. Developing new metrics for measuring and monitoring information disorder
+
+6. Align and adjust government institutions and journalism to support these areas.
+
+Just as a nuclear plant's safety systems protect us from physical catastrophe, our information systems protect us from social and political meltdown. We need to start treating them with the same level of seriousness.
+
+Because in an age of increasing complexity and connectivity, the energy cost of truth isn't just academic—it's existential. Our ability to maintain information order in our critical systems may determine whether civilization continues to advance or begins to unravel.
+
+The solution isn't just more fact-checking or media literacy, though these help. We need a fundamental shift in how we think about information systems and their role in maintaining social stability. We need to invest in reducing the energy cost of truth and building systems that can maintain information order even under attack.
+
+The alternative is watching our systems consume more and more energy fighting entropy until they eventually collapse. Like a nuclear plant with failing safety systems, the energy that could power progress instead becomes a force for destruction.
+
+1. "Cybernetics: Or Control and Communication in the Animal and the Machine" (1948)By Norbert Wiener*Why it's relevant: Foundational work on how information controls systems and energy flows. Surprisingly prescient about information disorder in social systems.*
+
+2. "The Perfect Storm: How the Information Quality Crisis will Revolutionize Politics" (2023)By Helen Margetts and Peter John*Examines how information quality affects democratic systems, using data from recent political upheavals.*
+
+3. "Order out of Chaos: Man's New Dialogue with Nature" (1984)By Ilya Prigogine and Isabelle Stengers*Classic work on how order emerges from disorder. Particularly relevant to understanding social media dynamics.*
+
+4. "Networks of Power: Electrification in Western Society, 1880-1930" (1983)By Thomas P. Hughes*Surprising relevance: Shows how information systems were crucial to managing physical energy networks. Parallel to today's social energy management.*
+
+5. "Trust: The Social Virtues and The Creation of Prosperity" (1995)By Francis Fukuyama*Explores how social trust (information order) enables complex societies to function efficiently.*
+
+6. "Normal Accidents: Living with High-Risk Technologies" (1984)By Charles Perrow*Crucial analysis of how complex systems fail. Directly applicable to information system failures.*
+
+7. "The Age of Surveillance Capitalism" (2019)By Shoshana Zuboff*Modern classic on how information disorder is deliberately created for profit.*
+
+8. "Governing the Commons" (1990)By Elinor Ostrom*Nobel Prize winner's analysis of how communities maintain order in shared resource systems. Surprisingly applicable to information commons.*
+
+9. "Superminds: The Surprising Power of People and Computers Thinking Together" (2018)By Thomas W. Malone*Fresh perspective on how collective intelligence can maintain information order.*
+
+10. "Information: A Very Short Introduction" (2017)By Luciano Floridi*Concise but deep exploration of information's role in society. Essential background for understanding information disorder.*
+
+Additional Reading:- "Cynefin: Weaving Sense-Making into the Fabric of Our World" (2020) by Dave Snowden- "The Information: A History, a Theory, a Flood" (2011) by James Gleick- "The Stack: On Software and Sovereignty" (2015) by Benjamin Bratton
+
+These works provide a theoretical foundation while connecting to current challenges.
+
+Rob Tyrie is a veteran information adventurer and a trained computer scientist trying to figure out the world one step at a time. This article was conceived design and created using Claude.ai in 40 years experience in creating systems and understanding how they decay. When not found in the library looking for the next good book, Rob may be traveling one way or another. His home base is Toronto, Ontario.

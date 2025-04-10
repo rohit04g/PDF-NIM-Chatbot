@@ -1,0 +1,25 @@
+👋 Hello!Issue #265: auditioning for SNL, an engineer’s Hippocratic Oath, and waking up at 5 a.m.By Harris Sockel
+
+Building on yesterday’s theme of not taking what you read online at face value, I want to share a new report coauthored by two computer scientists and a former health reporter who, after a six month investigation, discovered a disturbing trend: thousands of fake academic papers, especially in cancer and Covid-19 research, flooding the system and blocking real science.
+
+“Fake” means written by AI (or at least with a lot of help from AI). In academia, more papers usually leads to more funding, so there’s an unspoken incentive to churn out whatever will get past journal editors (aka “publish or perish”). This can have disastrous consequences. Not only do bogus papers mislead scientists trying to do real research, they can actually make people sick. One example: Research used to recommend ivermectin, an early Covid-19 drug, was later found to be fraudulent and not based in real clinical trials. One man spent nine days in the hospital after taking the pill.
+
+One of the engineers who coauthored the report created the Problematic Paper Screener, a tool that trawls millions of new scholarly reports looking for clues of deceit. One giveaway: awkward writing — phrases that no one would ever say in conversation (“crude information” instead of “raw data”). If you see that, someone may have used AI to rewrite someone else’s academic paper, subbing in verbose synonyms to evade plagiarism detection software.
+
+“You can’t just read an abstract and have any faith in it,” says a cancer researcher quoted in the story who’s been digging into this, “I kind of assume everything’s wrong.”
+
+What about peer review, you ask? From everything I’ve read, peer review kind of feels like the book blurb industry — a system running on personal connections and favoritism. Most people who write a blurb (or a peer review) do so with some level of motivated reasoning. I’ll blurb you, you’ll blurb me… even if we don’t love (or even read) each other’s books… and the cycle continues. Also, ~17% of peer reviews are now written by ChatGPT.
+
+You can read the full report here. I’m sharing it because, yes, it’s shocking, but it’s also a lesson in incentives. (Some) governments fund institutions purely based on metrics (# of papers published), and use quantity as a proxy for quality. That’s a bad way to measure value. But the root problem, I think, is this: Most people never read these academic papers. They’re written for the writer, not for readers. A statistician quoted in the report sums it up well: “We need less research, better research, research done for the right reasons.”*
+
+Bryan Ye trained himself to wake up at 5 a.m. so he could start his day by pursuing personal projects, and learned the only way to start a new habit is to be honest with yourself about what you’ll lose when you do. (He lost about two hours every evening, because he now needs to be in bed by 9 p.m.)
+
+*On that note: on February 21, 2025 from 12–4pm ET, we’re hosting open office hours for academics, scholars, and students on Medium (or who are interested in writing on Medium!). Register here.
+
+Deepen your understanding every day with the Medium Newsletter. Sign up here.
+
+Edited and produced by Scott Lamb & Carly Rose Gillis
+
+Questions, feedback, or story suggestions? Email us: tips@medium.com
+
+Like what you see in this newsletter but not already a Medium member? Read without limits or ads, fund great writers, and join a community that believes in human storytelling.
